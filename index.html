@@ -1,96 +1,238 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brian Bazurto's Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Brian Bazurto</h1>
+    <div class="contact-info">
+        <div class="contact-item">
+            <span class="contact-label">Phone Number</span>
+            <span class="contact-detail">786-353-6352</span>
+        </div>
+        <div class="contact-item">
+            <span class="contact-label">Personal Email</span>
+            <span class="contact-detail">BA.00001@OUTLOOK.COM</span>
+        </div>
+        <div class="contact-item">
+            <span class="contact-label">School Email</span>
+            <span class="contact-detail">IBAZU001@FIU.EDU</span>
+        </div>
+    </div>
+    <p><a href="https://linkedin.com/in/IBA001" target="_blank">LinkedIn</a> | <a href="https://github.com/ba-00001" target="_blank">GitHub</a></p>
+</header>
 
-        <!--========== BOX ICONS ==========-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <main>
+        <section id="education">
+            <h2>Education</h2>
+            <p><strong>Bachelor of Arts in Computer Science</strong> - Expected May 2026<br>
+            Florida International University, Miami, FL</p>
+            <ul>
+                <li>Honors College</li>
+                <li>GPA: 3.5</li>
+                <li>Minors: Actuarial Studies</li>
+            </ul>
+            <p><strong>Associate in Science in Computer Science</strong> - Transfer student Dec 2022<br>
+            Community College of Philadelphia, Philadelphia, PA</p>
+            <ul>
+                <li>GPA: 3.87</li>
+            </ul>
+        </section>
+        <section id="experience">
+            <h2>Experience</h2>
+                    <p><strong>Data Administrator at Housing Department</strong> - Oct 2020 – Dec 2023<br>
+        Esperanza, Inc, Philadelphia, PA</p>
+        <ul>
+            <li>Oversaw and maintained databases for 10 national housing agencies, generating custom weekly, monthly, and quarterly data reports.</li>
+            <li>Administered housing client management systems, ensuring data accuracy, and provided technology support for Windows, MS Office, Adobe, and cloud applications.</li>
+            <li>Conducted regular database maintenance, including data cleaning and updates.</li>
+            <li>Collaborated with housing agencies to understand their data needs and customize reports accordingly.</li>
+            <li>Provided training and support to staff on various software applications, troubleshooting issues promptly to ensure smooth operations.</li>
+            <li>Streamlined data management processes, leading to more efficient reporting and decision-making.</li>
+            <li>Ensured data accuracy and integrity, enhancing the reliability of housing-related information.</li>
+            <li>Empowered staff with technical skills and knowledge, improving their productivity and confidence in utilizing technology for data-related tasks.</li>
+        </ul>
 
-        <!--========== CSS ==========-->
-        <link rel="stylesheet" href="assets/css/styles.css">
+<p><strong>Tech fellow WEB 101</strong> - Sep 2023- May 2024<br>
+CodePath, San Francisco, CA</p>
+<ul>
+    <li>Empowered fellow students by sharing technical skills and knowledge in web development.</li>
+    <li>Fostered a supportive learning environment and provided consistent assistance to students during class sessions.</li>
+    <li>Facilitated discussions, answered questions, and provided guidance on coding challenges and projects.</li>
+    <li>Offered one-on-one support to struggling students, helping them overcome obstacles and grasp complex concepts.</li>
+    <li>Facilitated the learning journey of fellow students, contributing to their understanding and mastery of web development principles.</li>
+    <li>Cultivated a supportive community within the class, fostering collaboration and mutual learning among participants.</li>
+</ul>
 
-        <title>Responsive resume cv</title>
-    </head>
-    <body>
-        <!--========== HEADER ==========-->
-        <header class="l-header" id="header">
-            
-        </header>
+<p><strong>Intern at American Express</strong> - May 2023<br>
+American Express, Miami, FL</p>
+<ul>
+    <li>Collaborated with the Amex security team to gain insights into advanced security processes for large-scale organizations.</li>
+    <li>Contributed to a small-scale project focused on web and mobile application security.</li>
+    <li>Participated in meetings, discussions, and hands-on exercises to understand security protocols and procedures.</li>
+    <li>Applied theoretical knowledge acquired from coursework to address real-world security challenges and contribute to project deliverables.</li>
+    <li>Enhanced understanding of cybersecurity practices and their application in corporate environments.</li>
+    <li>Contributed to the improvement of Amex's cybersecurity framework by providing insights and solutions to security issues identified during the internship.</li>
+</ul>
 
-        <main class="l-main bd-container">
-            <!-- All elements within this div, is generated in PDF -->
-            <div class="resume" id="area-cv">
-                <div class="resume__left">
-                    <!--========== HOME ==========-->
-                    <section class="home" id="home">
-                        
-                        <!-- Theme change button -->
-                        
-    
-                        <!-- Button to generate and download the pdf. Available for desktop. -->
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>Programming Languages: SQL, Java, Python, C++, REACT JS, Kotlin, JavaScript<br>
+            Software: PyCharm, Android Studio, Visual Studio, IntelliJ, Git</p>
+        
+        </section>
 
-                    </section>          
-                    
-                    <!--========== SOCIAL ==========-->
-                    <section class="social section">
-                        
-                    </section>
+      <section id="projects">
+          <h2>Projects</h2>
+        
+        <article>
+            <h3>Flixster+ Android App</h3>
+            <p>Developed using Android Studio and Kotlin, Flixster+ is a movie browsing app that enables users to explore movies currently playing in theaters.</p>
+            <p>Time spent: X hours spent in total</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>Make a request to The Movie Database API's now_playing endpoint to get a list of current movies.</li>
+                <li>Parse through JSON data and implement a RecyclerView to display all movies.</li>
+                <li>Use Glide to load and display movie poster images.</li>
+            </ul>
+        </article>
 
-                    <!--========== PROFILE ==========-->
-                    <section class="profile section" id="profile">
-                        
-                    </section>
-                    
-                    <!--========== EDUCATION ==========-->
-                    <section class="education section" id="education">
-                        
-                    </section>
-
-
-                    <!--========== SKILLS  ==========-->
-                    <section class="skills section" id="skills">
-                        
-                    </section>
-
-                </div>
-
-                <div class="resume__right">
-                    <!--========== EXPERIENCE ==========-->
-                    <section class="experience section" id="experience">
-                        
-                    </section>
-
-                    <!--========== CERTIFICATES ==========-->
-                    <section class="certificate section" id="certificates">
-                        
-                    </section>
-
-                    <!--========== REFERENCES ==========-->
-                    <section class="references section" id="references">
-                        
-                    </section>
-
-                    <!--========== LANGUAGES ==========-->
-                    <section class="languages section">
-                        
-                    </section>
-                    
-                    <!--========== INTERESTS ==========-->
-                    <section class="interests section">
-                        
-                    </section>
-                </div>
-            </div>        
-        </main>
-
-        <!--========== SCROLL TOP ==========-->
+        
+        <article>
+            <h3>Wishlist Android App</h3>
+            <p>Developed using Android Studio and Kotlin, Wishlist App serves as a convenient tool for users to keep track of items they want to buy.</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>User can add an item to their wishlist with name, price, and URL.</li>
+                <li>User can see their list of items including name, price, and URL based on previously inputted items using RecyclerView.</li>
+            </ul>
+        </article>
         
 
-        <!--========== HTML2PDF ==========-->
-        <script src="assets/js/html2pdf.bundle.min.js"></script>
+        <article>
+            <h3>Trivia Quiz IOS App</h3>
+            <p>Developed using Xcode and Swift, Trivia Quiz App challenges users' knowledge with a series of trivia questions.</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>User can view the current question and 4 different answers.</li>
+                <li>User can view the next question after tapping an answer.</li>
+                <li>User can answer at least 3 different questions.</li>
+                <li>User can use the vertical orientation of the app on any device.</li>
+                <li>User can track the question they are on and how many questions are left.</li>
+                <li>User can see how many questions they got correct after answering all questions.</li>
+                <li>User can restart the game after finishing all questions.</li>
+            </ul>
+        </article>
 
-        <!--========== MAIN JS ==========-->
-        <script src="assets/js/main.js"></script>
-    </body>
+       
+        <article>
+            <h3>Wordle IOS App</h3>
+            <p>Developed using Xcode and Swift, Wordle App brings the classic Wordle game to iOS devices. Users can engage in a word-guessing game by selecting letters from an on-screen keyboard and receiving feedback on correct and incorrect guesses.</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>User can change the number of letters per row (the length of the goal word)</li>
+                <li>User can change the number of rows on the board (how many guesses are allowed)</li>
+                <li>User can select a new themed set to pull the goal word from</li>
+                <li>User can select "alien wordle", causing the goal word to change after each guess</li>
+                <li>Display of a reset button on the top left to reset the game without altering the settings</li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>Wordle Android App</h3>
+            <p>Developed using Android Studio and Kotlin, WORDLE Android app recreates a simplified version of the popular word game Wordle.</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>User has 3 chances to guess a random 4-letter word.</li>
+                <li>After 3 guesses, the user should no longer be able to submit another guess.</li>
+                <li>After each guess, the user sees the "correctness" of the guess.</li>
+                <li>After all guesses are taken, the user can see the target word displayed.</li>
+                <li>User can see the 'correctness' of their guess through colors on the word.</li>
+                <li>User sees a visual change after guessing the correct word.</li>
+                <li>User can tap a 'Reset' button to get a new word and clear previous guesses.</li>
+                <li>The app provides green, red, and grey feedback.</li>
+            </ul>
+        </article>
+        
+        <article>
+              <h3>PokeDexViewer Android App</h3>
+              <p>Developed using Android Studio and Kotlin, PokeDexViewer allows users to explore Pokémon details fetched from the PokeAPI.</p>
+          <p>Key Features:</p>
+          <ul>
+              <li>Utilized RecyclerView for Pokémon data presentation.</li>
+              <li>Customized fonts, themes, and night mode for improved aesthetics.</li>
+              <li>Integrated Glide library for efficient image loading.</li>
+          </ul>
+          </article>
+
+
+        
+          <!-- Add more projects
+
+        
+        <article>
+            <h3>Project Title</h3>
+            <p>Description of the project, what it does, and the problem it solves. Programming Languages used: HTML, CSS, JavaScript.</p>
+        </article>
+        
+        
+        -->
+      </section>
+
+      
+        <section id="honors-awards">
+            <h2>Honors and Awards</h2>
+            <ul>
+                <li>Hispanic Scholarship Fund - Jul 2023</li>
+                <li>TAU SIGMA National Honor Society - Jun 2023</li>
+                <li>Dean’s List Spring 2023, Fall 2023 - Dec 2023</li>
+                <li>First Presbyterian Church in Philadelphia (LGBTQ) Scholarship - Oct 2022</li>
+                <li>Phi Theta Kappa Honor Society International - Jul 2022</li>
+            </ul>
+        </section>
+      <section id="leadership-development">
+          <h2>Leadership and Professional Development</h2>
+          <p><strong>Google - Tech Exchange 2024 Cohort</strong> - Jan 2024- May 2024</p>
+          <ul>
+              <li>Completed accredited coursework and received direct mentorship from Googlers</li>
+              <li>Curriculum: Applied Data Structures & Algorithms, Software Development, Careers in Tech</li>
+          </ul>
+          <p><strong>Management Leadership for Tomorrow (MLT) - Career Preparation Fellow</strong> - Jan 2024- Sep 2025</p>
+          <ul>
+              <li>SWE track of MLT's Career Prep program</li>
+          </ul>
+          <p><strong>AI4ALL Ignite - Career readiness & the technical AI internship</strong> - Jan 2024- Oct 2024</p>
+          <ul>
+              <li>Portfolio Project, Career Readiness, and the Technical AI Career Prep Program</li>
+          </ul>
+          <p><strong>SEO Tech Developer - SEO First Academy 2023</strong> - Apr 2023- Jul 2023</p>
+          <ul>
+              <li>Gained practical coding skills and a deep understanding of Python's applications</li>
+          </ul>
+          <p><strong>Florida International University – Student organizations</strong> - Jan 2023- Present</p>
+          <ul>
+              <li>Actively participate in technical workshops as an INIT Member, BookTok Club, and FIU Brazilian Jiu-Jitsu</li>
+              <li>Contribute to the technical community by participating in MLH hackathons (Web3Apps, TechTogether, Global HackWeek), Breakthrough Tech Miami, and supporting organizations like ALPFA FIU and SHPE FIU.</li>
+          </ul>
+      </section>
+      <section id="certifications">
+          <h2>Certifications</h2>
+          <ul>
+              <li>CodePath: Android Development 101, Cybersecurity 101 & 102, Software Engineering, and Web Development 101</li>
+          </ul>
+      </section>
+
+        <section id="additional-skills">
+            <h2>Additional Skills and Interests</h2>
+            <p>Fluent in Spanish, interested in social innovation, entrepreneurship, and international travel.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© Brian Bazurto. All rights reserved.</p>
+    </footer>
+</body>
 </html>
