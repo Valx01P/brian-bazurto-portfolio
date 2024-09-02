@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <title>Brian Bazurto's Resume</title>
     <meta charset="utf-8" />
@@ -8,546 +8,387 @@
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+      .intro-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+      }
+      .intro-text {
+          flex: 1;
+          min-width: 300px;
+      }
+      .intro-image {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 300px;
+      }
+      .intro-image img {
+          width: 300px;
+          height: 300px;
+          object-fit: cover;
+          border-radius: 10px;
+      }
+  </style>
 </head>
 <body class="is-preload">
 
-<!-- Sidebar -->
-<section id="sidebar">
-    <div class="inner">
-        <nav>
-            <ul>
-                <li><a href="#intro">Welcome</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#honors">Honors</a></li>
-                <li><a href="#leadership">Leadership</a></li>
-                
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<!-- Wrapper -->
-<div id="wrapper">
-
-<!-- Introduction with Public Social Media Information -->
-<section id="intro" class="wrapper style1 fullscreen fade-up">
-    <div class="inner">
-        <h1>Brian Bazurto</h1>
-        <p>A detailed portfolio of my professional and academic journey in Computer Science. Please scroll to explore more about my education, projects, and experiences.</p>
-        
-        <!-- Social Media Information -->
-        <div>
-            
-            <ul class="icons">
-                <li><a href="https://linkedin.com/in/IBA001" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                <li><a href="https://github.com/ba-00001" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-        </div>
-        
-        <!-- Additional introductory content or links -->
-        <ul class="actions">
-            <li><a href="#education" class="button scrolly">Learn more</a></li>
-        </ul>
-    </div>
-</section>
-
-<script>
-function toggleContactInfo() {
-    var x = document.getElementById("contact-info");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
-
-
-    <!-- Education -->
-    <section id="education" class="wrapper style2 spotlights">
+    <!-- Sidebar -->
+    <section id="sidebar">
         <div class="inner">
-            <h2>Education</h2>
-            <p><strong>Florida International University</strong><br>
-            Bachelor of Arts in Computer Science, Honors College, Minors: Actuarial Studies, GPA: 3.67, Expected May 2026</p>
-            <p><strong>Community College of Philadelphia</strong><br>
-            Associate in Science in Computer Science, GPA: 3.87, Transfer student Dec 2022</p>
-            <p><strong>Relevant Coursework</strong><br>
-                Data Structures and Algorithms, Calculus I, and Calculus II.</p>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Welcome</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#honors">Honors</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                </ul>
+            </nav>
         </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="wrapper style3 fade-up">
-        <div class="inner">
-            <h2>Skills &amp; Technologies</h2>
-            <p><strong>Languages:</strong> Java, Python, C++, SQL, JavaScript, Kotlin, REACT JS</p>
-            <p><strong>Tools:</strong> Android Studio, PyCharm, Visual Studio, IntelliJ, Git, Google Cloud</p>
-            <p><strong>Certifications:</strong> CodePath: Android Development 101 & 102, Cybersecurity 101 & 102, Software Engineering, IOS Development 101 and Web Development 101</p>
-        </div>
-    </section>
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-   <!-- Experience -->
-<section id="experience" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Professional Experience</h2>
-        
-        <h3>SEO Tech Dev Intern – May 2024 – Aug 2024</h3>
-        <p>SEO Tech Developer, New York, NY</p>
-        <ul>
-            <li>Developed <strong>EcoRoute</strong>, a sustainable routing app providing eco-friendly travel options and CO2 emission estimates.</li>
-            <li>Contributed to <strong>HealthWatch</strong>, a personal health monitoring app that integrates with Fitbit for real-time tracking and data analysis.</li>
-            <li>Worked on <strong>StockSnap</strong>, an app for managing stock portfolios with real-time market data and performance insights.</li>
-            <li>Received rigorous technical and interpersonal skills development through intensive training and mentorship.</li>
-        </ul>
+        <!-- Introduction -->
+        <section id="intro" class="wrapper style1 fullscreen fade-up">
+          <div class="inner intro-container">
+              <!-- Text Section -->
+              <div class="intro-text">
+                  <h1>Brian Bazurto</h1>
+                  <p>A detailed portfolio of my professional and academic journey in Computer Science. Please scroll to explore more about my education, projects, and experiences.</p>
+                  <!-- Social Media Information -->
+                  <div>
+                      <ul class="icons">
+                          <li><a href="https://linkedin.com/in/IBA001" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                          <li><a href="https://github.com/ba-00001" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                      </ul>
+                  </div>
+                  <!-- Additional introductory content or links -->
+                  <ul class="actions">
+                      <li><a href="#education" class="button scrolly">Learn more</a></li>
+                  </ul>
+              </div>
 
-        <h3>Tech Fellow - Technical Interview Prep (TIP 101) - June 2024 - Aug 2024</h3>
-        <p>CodePath, San Francisco, CA</p>
-        <ul>
-            <li>Assisted students with lab problems and technical challenges, functioning similarly to a Teaching Assistant.</li>
-            <li>Supported students in understanding and resolving coding exercises and interview preparation issues.</li>
-            <li>Provided guidance on effective problem-solving strategies and coding practices.</li>
-            <li>Contributed to the development of instructional materials and resources to aid student learning.</li>
-            <li>Promoted a collaborative learning environment by encouraging peer support and knowledge sharing.</li>
-        </ul>
+              <!-- Image Section -->
+              <div class="intro-image">
+                  <img src="images/website-pic.jpg" alt="Brian Bazurto">
+              </div>
+          </div>
+      </section>
 
+        <!-- Education -->
+        <section id="education" class="wrapper style2 spotlights">
+            <div class="inner">
+                <h2>Education</h2>
+                <p><strong>Florida International University</strong><br>
+                Bachelor of Arts in Computer Science, Honors College, Minors: Actuarial Studies, GPA: 3.67, Expected May 2026</p>
+                <p><strong>Community College of Philadelphia</strong><br>
+                Associate in Science in Computer Science, GPA: 3.87, Transfer student Dec 2022</p>
+                <p><strong>Relevant Coursework</strong><br>
+                    Data Structures and Algorithms, Calculus I, and Calculus II.</p>
+            </div>
+        </section>
 
-        <!-- Google Tech Exchange 2024 Cohort -->
-        <article>
-            <h3>Google - Tech Exchange 2024 Cohort</h3>
-            <p>January 2024 - May 2024</p>
-            <ul>
-                <li>Participated in an immersive tech exchange program, receiving direct mentorship from experienced Googlers.</li>
-                <li>Completed rigorous coursework in Applied Data Structures & Algorithms, enhancing my software development skills.</li>
-                <li>Explored various careers in technology through targeted training and real-world application scenarios.</li>
-                <li>Engaged in collaborative projects that simulated real-time tech industry challenges.</li>
-                <li>Was part of a team that developed <strong>BodySync</strong>, a web app deployed on Google Cloud using Python, Streamlit, Gemini API, and Gemini Provision. Our project was selected to be presented in the program finale as one of the best apps, showcasing our innovative approach and technical proficiency.</li>
-            </ul>
-        </article>
+        <!-- Skills -->
+        <section id="skills" class="wrapper style3 fade-up">
+            <div class="inner">
+                <h2>Skills &amp; Technologies</h2>
+                <p><strong>Languages:</strong> Java, Python, C++, SQL, JavaScript, Kotlin, Next.js</p>
+                <p><strong>Tools:</strong> Android Studio, PyCharm, Visual Studio, IntelliJ, Git, Google Cloud</p>
+                <p><strong>Certifications:</strong> CodePath: Android Development 101 & 102, Cybersecurity 101 & 102, Software Engineering, Technical Interview Prep 103, IOS Development 101, and Web Development 101.</p>
+            </div>
+        </section>
 
+        <!-- Experience -->
+        <section id="experience" class="wrapper style1 fade-up">
+            <div class="inner">
+                <h2>Professional Experience</h2>
 
-        <!-- AI4ALL Ignite - Career Readiness & Technical AI Internship -->
-        <article>
-            <h3>AI4ALL Ignite - Career Readiness & the Technical AI Internship</h3>
-            <p>January 2024 - October 2024</p>
-            <ul>
-                <li>Underwent a comprehensive AI-focused career readiness and internship program aimed at developing technical and professional skills.</li>
-                <li>Completed a portfolio project that demonstrated my ability to apply AI technologies in practical settings.</li>
-                <li>Participated in advanced workshops and seminars that prepared me for technical challenges in the AI field.</li>
-                <li>Collaborated with other participants to develop solutions that leverage AI for social impact.</li>
-            </ul>
-        </article>
-        <h3>Tech Fellow - WEB 101 - Sep 2023- May 2024</h3>
-        <p>CodePath, San Francisco, CA</p>
-        <ul>
-            <li>Shared technical skills and knowledge in web development, empowering fellow students.</li>
-            <li>Provided consistent assistance and support during class sessions.</li>
-            <li>Facilitated discussions, answered questions, and guided students through coding challenges and projects.</li>
-            <li>Offered one-on-one support to struggling students, helping them overcome obstacles and grasp complex concepts.</li>
-            <li>Cultivated a supportive community within the class, fostering collaboration and mutual learning among participants.</li>
-        </ul>
+                <h3>SEO Tech Dev Intern – May 2024 – Aug 2024</h3>
+                <p>SEO Tech Developer, New York, NY</p>
+                <ul>
+                    <li><strong>EcoRoute:</strong> A sustainable routing app using Python, ChatGPT API, and Google Maps API, offering eco-friendly travel 
+                      options and CO2 emission estimates.</li>
+                    <li><strong>HealthWatch: </strong>A personal health monitoring app built with Flask, integrating ChatGPT API and Fitbit API for real-time 
+                      tracking and data analysis.</li>
+                    <li><strong>StockSnap: </strong>A stock portfolio management app developed with Flask, utilizing ChatGPT API and News API for real
+                      time market data and performance insights.</li>
+                  </ul>
 
-        <h3>Intern at American Express - May 2023</h3>
-        <p>American Express, Miami, FL</p>
-        <ul>
-            <li>Collaborated with the Amex security team to gain insights into advanced security processes for large-scale organizations.</li>
-            <li>Contributed to a project focused on web and mobile application security.</li>
-            <li>Participated in meetings, discussions, and hands-on exercises to deepen understanding of security protocols and procedures.</li>
-            <li>Applied theoretical knowledge from coursework to real-world security challenges, enhancing cybersecurity practices and frameworks.</li>
-        </ul>
+                <h3>Tech Fellow - Technical Interview Prep (TIP 101) - June 2024 - Present</h3>
+                <p>CodePath, San Francisco, CA</p>
+                <ul>
+                    <li>Assisted students with lab problems and technical challenges, functioning similarly to a Teaching Assistant.</li>
+                    <li>Supported students in understanding and resolving coding exercises and interview preparation issues.</li>
+                    <li>Provided guidance on effective problem-solving strategies and coding practices.</li>
+                    <li>Contributed to the development of instructional materials and resources to aid student learning.</li>
+                    <li>Promoted a collaborative learning environment by encouraging peer support and knowledge sharing.</li>
+                </ul>
 
-        <h3>Data Administrator at Housing Department - Oct 2020 – Dec 2023</h3>
-        <p>Esperanza, Inc, Philadelphia, PA</p>
-        <ul>
-            <li>Oversaw and maintained databases for 10 national housing agencies, generating custom data reports.</li>
-            <li>Ensured data accuracy and provided technology support across various platforms including Windows, MS Office, Adobe, and cloud applications.</li>
-            <li>Streamlined data management processes, leading to more efficient reporting and decision-making.</li>
-            <li>Empowered staff with technical skills and knowledge, enhancing their productivity and confidence in utilizing technology for data-related tasks.</li>
-        </ul>
-    </div>
-</section>
+                <article>
+                    <h3>Google - Tech Exchange 2024 Cohort</h3>
+                    <p>January 2024 - May 2024</p>
+                    <ul>
+                        <li>Participated in an immersive tech exchange program, receiving direct mentorship from experienced Googlers.</li>
+                        <li>Completed rigorous coursework in Applied Data Structures & Algorithms, enhancing my software development skills.</li>
+                        <li>Explored various careers in technology through targeted training and real-world application scenarios.</li>
+                        <li>Engaged in collaborative projects that simulated real-time tech industry challenges.</li>
+                        <li>Was part of a team that developed <strong>BodySync</strong>, a web app deployed on Google Cloud using Python, Streamlit, Gemini API, and Gemini Provision. Our project was selected to be presented in the program finale as one of the best apps, showcasing our innovative approach and technical proficiency.</li>
+                    </ul>
+                </article>
 
+                <article>
+                    <h3>AI4ALL Ignite - Career Readiness & Technical AI Internship</h3>
+                    <p>January 2024 - October 2024</p>
+                    <ul>
+                        <li>Underwent a comprehensive AI-focused career readiness and internship program aimed at developing technical and professional skills.</li>
+                        <li>Completed a portfolio project that demonstrated my ability to apply AI technologies in practical settings.</li>
+                        <li>Participated in advanced workshops and seminars that prepared me for technical challenges in the AI field.</li>
+                        <li>Collaborated with other participants to develop solutions that leverage AI for social impact.</li>
+                    </ul>
+                </article>
 
-    <!-- Projects -->
-<section id="projects" class="wrapper style2 spotlights">
-    <div class="inner">
-        <h2>Key Projects</h2>
-        <p>Engaging in diverse projects demonstrating strong problem-solving skills and technological prowess.</p>
-        <!-- BodySync Web App -->
-        <article>
-            <h3>1. BodySync Web App</h3>
-            <p>Developed as a web fitness application, BodySync leverages AI to provide personalized fitness and nutrition guidance.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can log their fitness activities and nutrition intake.</li>
-              <li>Provides personalized workout and diet plans based on user data.</li>
-              <li>Integration with fitness tracking devices for real-time data synchronization.</li>
-              <li>User can view their progress over time with detailed analytics.</li>
-              <li>AI-driven recommendations to optimize fitness and nutrition plans.</li>
-              <li>Uses Gemini Pro API to scan machines and give workout recommendations.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Frontend: Streamlit</li>
-              <li>Backend: Flask</li>
-              <li>Deployment: Google Cloud</li>
-              <li>Integration: Gemini Pro API</li>
-            </ul>
-            <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/BodySyncWebApp-FILES/BodySyncWebApp-README.MD">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>2. MentalMate Android App</h3>
-            <p>Developed using Android Studio and Kotlin, MentalMate is an AI-driven mental health companion designed to improve mental wellness.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can interact with an AI chatbot for mental health support.</li>
-              <li>The app provides mental health tips and resources.</li>
-              <li>User can log their mood and track their mental health over time.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-              <li>Chat GPT API</li>
-              <li>RecyclerView</li>
-            </ul>
-            <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/MENTALMATE-FILES/MENTALMATE-README.MD">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>3. PingPong Agent</h3>
-            <p>PingPong Agent is an AI-based game agent designed to play ping pong with human players.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>AI agent capable of playing ping pong and learning from each game.</li>
-              <li>Real-time AI gameplay.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Python</li>
-              <li>Gym Library</li>
-            </ul>
-            <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/PingPongAgent-FILES/PingPongAgent-FILES-README.MD">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>4. HealthWatch</h3>
-            <p>HealthWatch is a personal health monitoring app designed for individuals with chronic conditions, health enthusiasts, and seniors. It integrates with the Fitbit API and uses a Flask backend and a Streamlit frontend.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Real-time health tracking.</li>
-              <li>Personal dashboard for health data visualization.</li>
-              <li>Historical data analysis.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Fitbit API</li>
-              <li>Flask (Backend)</li>
-              <li>HTML, CSS, Bootstrap, JavaScript (Frontend)</li>
-              <li>PythonAnywhere (Deployment)</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>5. StockSnap</h3>
-            <p>StockSnap is an app for managing and tracking stock portfolios, providing real-time market data and insights.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can add and track multiple stock portfolios.</li>
-              <li>Provides real-time market data and stock performance analysis.</li>
-              <li>User can set alerts for stock price changes.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Vantage API</li>
-              <li>Chat GPT API</li>
-              <li>Python</li>
-              <li>Flask (Backend)</li>
-              <li>HTML, CSS, Bootstrap, JavaScript (Frontend)</li>
-              <li>PythonAnywhere (Deployment)</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>6. TuneTrek Music iOS App</h3>
-            <p>Developed using Xcode and Swift, TuneTrek is a music streaming app that allows users to browse and play music albums.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can view a list of albums with their cover art.</li>
-              <li>User can play music from selected albums.</li>
-              <li>App supports both iPhone and iPad layouts.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-              <li>UIKit</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>7. Flixster+ Android App</h3>
-            <p>Developed using Android Studio and Kotlin, Flixster+ is a movie browsing app that enables users to explore movies currently playing in theaters.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Make a request to The Movie Database API's now_playing endpoint to get a list of current movies.</li>
-              <li>Parse through JSON data and implement a RecyclerView to display all movies.</li>
-              <li>Use Glide to load and display movie poster images.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-              <li>The Movie Database API</li>
-              <li>JSON</li>
-              <li>RecyclerView</li>
-              <li>Glide</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>8. BitFit Android App</h3>
-            <p>Developed using Android Studio and Kotlin, BitFit is a fitness tracking app that allows users to log and monitor their fitness activities and nutrition.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can log their daily fitness activities and nutrition intake.</li>
-              <li>User can view a summary of their activities and nutrition over time.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-              <li>RecyclerView</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>9. Task Manager Android App</h3>
-            <p>Developed using Android Studio and Kotlin, the Task Manager Android app helps users manage their tasks efficiently with a simple and intuitive interface.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can add new tasks with a title, description, and due date.</li>
-              <li>Tasks can be viewed in a list and edited or deleted as needed.</li>
-              <li>A calendar view allows users to see tasks due on specific dates.</li>
-              <li>Swipe to delete functionality for tasks.</li>
-              <li>Users can view tasks in both list and calendar formats.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-              <li>RecyclerView</li>
-              <li>Room (for persistent storage)</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>10. Wishlist Android App</h3>
-            <p>Developed using Android Studio and Kotlin, Wishlist App serves as a convenient tool for users to keep track of items they want to buy.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can add an item to their wishlist with name, price, and URL.</li>
-              <li>User can see their list of items including name, price, and URL based on previously inputted items using RecyclerView.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-              <li>RecyclerView</li>
-              <li>Room (for persistent storage)</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>11. Wordle Android App</h3>
-            <p>Developed using Android Studio and Kotlin, Wordle Android App is a clone of the popular word puzzle game where users try to guess a hidden word.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Users can guess a 5-letter word within 6 attempts.</li>
-              <li>Color-coded feedback after each guess helps users refine their guesses.</li>
-              <li>Features a daily challenge with a new word each day.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Android Studio</li>
-              <li>Kotlin</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>12. Wordle iOS App</h3>
-            <p>Developed using Xcode and Swift, Wordle iOS App is an iOS version of the popular word puzzle game where users try to guess a hidden word.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Users can guess a 5-letter word within 6 attempts.</li>
-              <li>Color-coded feedback after each guess helps users refine their guesses.</li>
-              <li>Features a daily challenge with a new word each day.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>13. Trivia Quiz iOS App</h3>
-            <p>Developed using Xcode and Swift, Trivia Quiz iOS App is a quiz game where users can answer questions across different categories.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Users can select from various trivia categories.</li>
-              <li>Displays multiple-choice questions with immediate feedback on answers.</li>
-              <li>Tracks user scores and displays high scores.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>14. Tumblr Feed iOS App</h3>
-            <p>Developed using Xcode and Swift, Tumblr Feed iOS App allows users to view and interact with their Tumblr feed.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>Displays a feed of posts from a user's Tumblr blog.</li>
-              <li>Supports viewing and liking posts.</li>
-              <li>Allows users to filter posts by type.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>15. Wishlist iOS App</h3>
-            <p>Developed using Xcode and Swift, Wishlist iOS App helps users track items they want to purchase.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can add items to their wishlist with details such as name, price, and URL.</li>
-              <li>Displays a list of all items with their details.</li>
-              <li>Allows users to view and manage their wishlist efficiently.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
-        
-          <article>
-            <h3>16. Task Manager iOS App</h3>
-            <p>Developed using Xcode and Swift, Task Manager iOS App helps users manage their tasks with a user-friendly interface.</p>
-            <p>Key Features:</p>
-            <ul>
-              <li>User can add tasks with details like title, description, and due date.</li>
-              <li>Tasks can be organized and displayed in a list format.</li>
-              <li>Provides functionality to edit and delete tasks.</li>
-            </ul>
-            <p>Tech Stack:</p>
-            <ul>
-              <li>Xcode</li>
-              <li>Swift</li>
-            </ul>
-            <p><a href="URL_TO_GIF_OR_IMAGE_OR_VIDEO_OR_PRESENTATION">View Project</a></p>
-          </article>
+                <h3>Tech Fellow - WEB 101 - Sep 2023- May 2024</h3>
+                <p>CodePath, San Francisco, CA</p>
+                <ul>
+                    <li>Shared technical skills and knowledge in web development, empowering fellow students.</li>
+                    <li>Provided consistent assistance and support during class sessions.</li>
+                    <li>Facilitated discussions, answered questions, and guided students through coding challenges and projects.</li>
+                    <li>Offered one-on-one support to struggling students, helping them overcome obstacles and grasp complex concepts.</li>
+                    <li>Cultivated a supportive community within the class, fostering collaboration and mutual learning among participants.</li>
+                </ul>
 
-        <!-- Additional project entries here if needed, following the same format -->
+                <h3>Intern at American Express - May 2023</h3>
+                <p>American Express, Miami, FL</p>
+                <ul>
+                    <li>Collaborated with the Amex security team to gain insights into advanced security processes for large-scale organizations.</li>
+                    <li>Contributed to a project focused on web and mobile application security.</li>
+                    <li>Participated in meetings, discussions, and hands-on exercises to deepen understanding of security protocols and procedures.</li>
+                    <li>Applied theoretical knowledge from coursework to real-world security challenges, enhancing cybersecurity practices and frameworks.</li>
+                </ul>
+
+                <h3>Data Administrator at Housing Department - Oct 2020 – Dec 2023</h3>
+                <p>Esperanza, Inc, Philadelphia, PA</p>
+                <ul>
+                    <li>Oversaw and maintained databases for 10 national housing agencies, generating custom data reports.</li>
+                    <li>Ensured data accuracy and provided technology support across various platforms including Windows, MS Office, Adobe, and cloud applications.</li>
+                    <li>Streamlined data management processes, leading to more efficient reporting and decision-making.</li>
+                    <li>Empowered staff with technical skills and knowledge, enhancing their productivity and confidence in utilizing technology for data-related tasks.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="wrapper style2 spotlights">
+            <div class="inner">
+                <h2>Projects</h2>
+                <p>Here are some of the key projects I've worked on, demonstrating my skills and expertise in various domains.</p>
+                <div class="features">
+                    <!-- Project 1 -->
+                    <section>
+                        <span class="icon solid major fa-mobile-alt"></span>
+                        <h3>BodySync Web App</h3>
+                        <p>A web fitness application that leverages AI to provide personalized fitness and nutrition guidance. The user can log fitness activities and nutrition intake, and the app provides personalized workout and diet plans. Integration with fitness tracking devices for real-time data synchronization.</p>
+                        <p><strong>Tech Stack:</strong> Streamlit, Flask, Google Cloud, Gemini Pro API</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/BodySyncWebApp-FILES/BodySyncWebApp-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 2 -->
+                    <section>
+                        <span class="icon solid major fa-brain"></span>
+                        <h3>MentalMate Android App</h3>
+                        <p>An AI-driven mental health companion app designed to improve mental wellness. Users can interact with an AI chatbot for mental health support, log their mood, and track their mental health over time.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, ChatGPT API, RecyclerView</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/MENTALMATE-FILES/MENTALMATE-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 3 -->
+                    <section>
+                        <span class="icon solid major fa-gamepad"></span>
+                        <h3>PingPong Agent</h3>
+                        <p>PingPong Agent is an AI-based game agent designed to play ping pong with human players. The agent learns from each game and improves its gameplay over time, providing real-time AI gameplay.</p>
+                        <p><strong>Tech Stack:</strong> Python, Gym Library</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/PingPongAgent-FILES/PingPongAgent-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 4 -->
+                    <section>
+                        <span class="icon solid major fa-heartbeat"></span>
+                        <h3>HealthWatch</h3>
+                        <p>A personal health monitoring app for individuals with chronic conditions, health enthusiasts, and seniors. The app integrates with the Fitbit API and provides real-time health tracking, a personal dashboard, and historical data analysis.</p>
+                        <p><strong>Tech Stack:</strong> Fitbit API, Flask, Streamlit, PythonAnywhere</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/HealthWatch-FILES/HealthWatch-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 5 -->
+                    <section>
+                        <span class="icon solid major fa-chart-line"></span>
+                        <h3>StockSnap</h3>
+                        <p>StockSnap is an app for managing and tracking stock portfolios, providing real-time market data and insights. Users can add and track multiple stock portfolios, set alerts for stock price changes, and view performance analysis.</p>
+                        <p><strong>Tech Stack:</strong> Vantage API, ChatGPT API, Python, Flask, Bootstrap</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/StockSnap-FILES/StockSnap-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 6 -->
+                    <section>
+                        <span class="icon solid major fa-music"></span>
+                        <h3>TuneTrek Music iOS App</h3>
+                        <p>A music streaming app allowing users to browse and play music albums. Users can view a list of albums with cover art, play music from selected albums, and the app supports both iPhone and iPad layouts.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift, UIKit</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/TuneTrek-FILES/TuneTrek-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 7 -->
+                    <section>
+                        <span class="icon solid major fa-film"></span>
+                        <h3>Flixster+ Android App</h3>
+                        <p>A movie browsing app that enables users to explore movies currently playing in theaters. Users can request a list of current movies, view movie poster images, and browse through them.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, The Movie Database API, Glide</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/FlixsterPlus-FILES/FlixsterPlus-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 8 -->
+                    <section>
+                        <span class="icon solid major fa-heart"></span>
+                        <h3>BitFit Android App</h3>
+                        <p>A fitness tracking app that allows users to log and monitor their fitness activities and nutrition. Users can view a summary of their activities over time and track their progress.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/BitFit-FILES/BitFit-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 9 -->
+                    <section>
+                        <span class="icon solid major fa-tasks"></span>
+                        <h3>Task Manager Android App</h3>
+                        <p>A task management app that helps users organize and manage their tasks efficiently with a simple and intuitive interface.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView, Room (for persistent storage)</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/TaskManager-FILES/TaskManager-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 10 -->
+                    <section>
+                        <span class="icon solid major fa-list"></span>
+                        <h3>Wishlist Android App</h3>
+                        <p>A convenient tool for users to keep track of items they want to buy. Users can add items to their wishlist with details like name, price, and URL, and manage their wishlist efficiently.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView, Room (for persistent storage)</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/Wishlist-FILES/Wishlist-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 11 -->
+                    <section>
+                        <span class="icon solid major fa-keyboard"></span>
+                        <h3>Wordle Android App</h3>
+                        <p>A clone of the popular word puzzle game where users try to guess a hidden word within 6 attempts. Features a daily challenge with a new word each day.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/WordleAndroid-FILES/WordleAndroid-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 12 -->
+                    <section>
+                        <span class="icon solid major fa-keyboard"></span>
+                        <h3>Wordle iOS App</h3>
+                        <p>An iOS version of the popular word puzzle game where users try to guess a hidden word within 6 attempts. Features a daily challenge with a new word each day.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/WordleIOS-FILES/WordleIOS-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 13 -->
+                    <section>
+                        <span class="icon solid major fa-question-circle"></span>
+                        <h3>Trivia Quiz iOS App</h3>
+                        <p>A quiz game where users can answer questions across different categories. Displays multiple-choice questions with immediate feedback on answers and tracks user scores.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/TriviaQuizIOS-FILES/TriviaQuizIOS-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 14 -->
+                    <section>
+                        <span class="icon solid major fa-rss"></span>
+                        <h3>Tumblr Feed iOS App</h3>
+                        <p>An app that allows users to view and interact with their Tumblr feed. Users can view posts, like them, and filter posts by type.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/TumblrFeedIOS-FILES/TumblrFeedIOS-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 15 -->
+                    <section>
+                        <span class="icon solid major fa-list-alt"></span>
+                        <h3>Wishlist iOS App</h3>
+                        <p>An app that helps users track items they want to purchase, allowing them to add items with details such as name, price, and URL, and manage their wishlist efficiently.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/WishlistIOS-FILES/WishlistIOS-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+                    <!-- Project 16 -->
+                    <section>
+                        <span class="icon solid major fa-tasks"></span>
+                        <h3>Task Manager iOS App</h3>
+                        <p>An app that helps users manage their tasks with a user-friendly interface, allowing them to add, organize, and edit tasks.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/TaskManagerIOS-FILES/TaskManagerIOS-FILES-README.MD" class="button primary">View Demo</a></p>
+                    </section>
+
+        </section>
+
+        <!-- Honors and Awards -->
+        <section id="honors" class="wrapper style3 fade-up">
+            <div class="inner">
+                <h2>Honors and Awards</h2>
+                <ul>
+                    <li><strong>Dean’s List:</strong> Spring 2024, Fall 2023, Spring 2023</li>
+                    <li><strong>Hispanic Scholarship Fund:</strong> July 2023</li>
+                    <li><strong>TAU SIGMA National Honor Society:</strong> June 2023</li>
+                    <li><strong>First Presbyterian Church in Philadelphia (LGBTQ) Scholarship:</strong> October 2022</li>
+                    <li><strong>Phi Theta Kappa Honor Society International:</strong> July 2022</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Leadership and Professional Development -->
+        <section id="leadership" class="wrapper style1 fade-up">
+            <div class="inner">
+                <h2>Leadership and Professional Development</h2>
+                <p>Here, you will find a detailed overview of the initiatives I have led or been a significant part of, showcasing my commitment to growth and excellence in both technical and leadership capacities.</p>
+
+                <article>
+                    <h3>Management Leadership for Tomorrow (MLT) - Career Preparation Fellow</h3>
+                    <p>January 2024 - September 2025</p>
+                    <ul>
+                        <li>Engaged in the SWE track of MLT's Career Prep program, focusing on accelerating my career in software engineering.</li>
+                        <li>Participated in intensive professional development sessions and mentorship to hone leadership skills and industry knowledge.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Sponsors for Educational Opportunity (SEO) - Apprenticeship First Year Academy</h3>
+                    <p>April 2023 - July 2023</p>
+                    <ul>
+                        <li>Gained hands-on experience in Python development, including data manipulation, algorithm design, and software testing. </li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Florida International University – Student Organizations</h3>
+                    <p>January 2023 - Present</p>
+                    <ul>
+                        <li>Active participant in technical workshops as an INIT Member, BookTok Club, and FIU Brazilian Jiu-Jitsu.</li>
+                        <li>Contributed to the technical community by participating in MLH hackathons (Web3Apps, TechTogether, Global HackWeek), Breakthrough Tech Miami, and supporting organizations like ALPFA FIU and SHPE FIU.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer" class="wrapper style1-alt">
+            <div class="inner">
+                <ul class="menu">
+                    <li>&copy; Brian Bazurto. All rights reserved.</li>
+                </ul>
+            </div>
+        </footer>
 
     </div>
-</section>
 
-
-
-<!-- Honors and Awards -->
-<section id="honors" class="wrapper style3 fade-up">
-    <div class="inner">
-        <h2>Honors and Awards</h2>
-        <ul>
-            <li><strong>Dean’s List:</strong> Spring 2024, Fall 2023, Spring 2023</li>
-            <li><strong>Hispanic Scholarship Fund:</strong> July 2023</li>
-            <li><strong>TAU SIGMA National Honor Society:</strong> June 2023</li>
-            <li><strong>First Presbyterian Church in Philadelphia (LGBTQ) Scholarship:</strong> October 2022</li>
-            <li><strong>Phi Theta Kappa Honor Society International:</strong> July 2022</li>
-        </ul>
-    </div>
-</section>
-
-
-<!-- Leadership and Professional Development -->
-<section id="leadership" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Leadership and Professional Development</h2>
-        <p>Here, you will find a detailed overview of the initiatives I have led or been a significant part of, showcasing my commitment to growth and excellence in both technical and leadership capacities.</p>
-
-        <!-- Management Leadership for Tomorrow (MLT) - Career Preparation Fellow -->
-        <article>
-            <h3>Management Leadership for Tomorrow (MLT) - Career Preparation Fellow</h3>
-            <p>January 2024 - September 2025</p>
-            <ul>
-                <li>Engaged in the SWE track of MLT's Career Prep program, focusing on accelerating my career in software engineering.</li>
-                <li>Participated in intensive professional development sessions and mentorship to hone leadership skills and industry knowledge.</li>
-            </ul>
-        </article>
-
-        <!-- SEO Tech Developer - SEO First Academy 2023 -->
-        <article>
-            <h3>SEO Tech Developer - SEO First Academy 2023</h3>
-            <p>April 2023 - July 2023</p>
-            <ul>
-                <li>Gained practical coding skills and a deep understanding of Python's applications through hands-on projects and expert-led sessions.</li>
-            </ul>
-        </article>
-
-        <!-- Florida International University - Student Organizations -->
-        <article>
-            <h3>Florida International University – Student Organizations</h3>
-            <p>January 2023 - Present</p>
-            <ul>
-                <li>Active participant in technical workshops as an INIT Member, BookTok Club, and FIU Brazilian Jiu-Jitsu.</li>
-                <li>Contributed to the technical community by participating in MLH hackathons (Web3Apps, TechTogether, Global HackWeek), Breakthrough Tech Miami, and supporting organizations like ALPFA FIU and SHPE FIU.</li>
-            </ul>
-        </article>
-    </div>
-</section>
-
-
-<!-- Footer -->
-<footer id="footer" class="wrapper style1-alt">
-    <div class="inner">
-        <ul class="menu">
-            <li>&copy; Brian Bazurto. All rights reserved.</li>
-           
-        </ul>
-    </div>
-</footer>
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
