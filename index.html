@@ -1,41 +1,779 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Brian Bazurto's Resume</title>
+    <title>Brian Bazurto - Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-
+    
     <style>
-      .intro-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
-      }
-      .intro-text {
-          flex: 1;
-          min-width: 300px;
-      }
-      .intro-image {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-width: 300px;
-      }
-      .intro-image img {
-          width: 300px;
-          height: 300px;
-          object-fit: cover;
-          border-radius: 10px;
-      }
-  </style>
+        /* Professional Color Scheme Variables */
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-blue: #16213e;
+            --accent-blue: #0f3460;
+            --secondary-blue: #533483;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+            --success: #28a745;
+            --gradient-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-accent: linear-gradient(135deg, #533483 0%, #0f3460 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--gradient-primary);
+            scroll-behavior: smooth;
+        }
+
+        /* Sidebar Navigation */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        #sidebar.active {
+            transform: translateX(0);
+        }
+
+        #sidebar .inner {
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        #sidebar nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #sidebar nav ul li {
+            width: 100%;
+            max-width: 300px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: none;
+        }
+
+        #sidebar.active nav ul li {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        #sidebar.active nav ul li:nth-child(1) { animation-delay: 0.1s; }
+        #sidebar.active nav ul li:nth-child(2) { animation-delay: 0.2s; }
+        #sidebar.active nav ul li:nth-child(3) { animation-delay: 0.3s; }
+        #sidebar.active nav ul li:nth-child(4) { animation-delay: 0.4s; }
+        #sidebar.active nav ul li:nth-child(5) { animation-delay: 0.5s; }
+        #sidebar.active nav ul li:nth-child(6) { animation-delay: 0.6s; }
+        #sidebar.active nav ul li:nth-child(7) { animation-delay: 0.7s; }
+        #sidebar.active nav ul li:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #sidebar nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+        }
+
+        #sidebar nav ul li a:hover {
+            background: var(--accent-blue);
+            border-color: var(--white);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: var(--accent-blue);
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        #wrapper {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .wrapper {
+            padding: 4rem 2rem;
+            min-height: auto;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wrapper.fullscreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .wrapper.style1 {
+            background: var(--gradient-primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wrapper.style1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" begin="1s"/></circle><circle cx="50" cy="70" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="2s"/></circle></svg>');
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+            75% { transform: translateY(-30px) rotate(3deg); }
+        }
+
+        .wrapper.style2 {
+            background: var(--white);
+            color: var(--dark-gray);
+            position: relative;
+        }
+
+        .wrapper.style2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            animation: slideIn 1s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .wrapper.style3 {
+            background: var(--light-gray);
+            color: var(--dark-gray);
+            position: relative;
+        }
+
+        .wrapper.style3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(83, 52, 131, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) translateX(0); opacity: 0.3; }
+            50% { transform: scale(1.2) translateX(-20px); opacity: 0.1; }
+        }
+
+        .inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Container */
+        .intro-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .intro-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 300px;
+        }
+
+        .intro-image img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .intro-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, #e3f2fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease forwards 0.5s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        h2.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .wrapper.style1 h2 {
+            color: var(--white);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            transition: width 0.8s ease 0.3s;
+        }
+
+        h2.animated::after {
+            width: 60px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        h3.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Resume Link Display */
+        .resume-link-display {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9) rotateX(20deg);
+            animation: popIn 1s ease forwards 1.5s;
+        }
+
+        .resume-link-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+            border-radius: 20px;
+        }
+
+        .resume-link-display > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .resume-link-display h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .resume-url {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-url::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .resume-url:hover {
+            background: var(--accent-blue);
+            border-color: var(--white);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .resume-url:hover::before {
+            left: 100%;
+        }
+
+        /* Social Icons */
+        .icons {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .icons li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.5rem;
+        }
+
+        .icons li a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.4s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .icons li a:hover {
+            background: var(--accent-blue);
+            transform: translateY(-10px) rotate(360deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: var(--white);
+        }
+
+        .icons li a:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .icons li:nth-child(1) a {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .icons li:nth-child(2) a {
+            animation: bounce 2s ease-in-out infinite 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(83, 52, 131, 0.3);
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(83, 52, 131, 0.5);
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button.primary {
+            background: linear-gradient(135deg, var(--success), #20c997);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .button.primary:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Project Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .features section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px) rotateX(20deg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            transition: left 0.6s ease;
+        }
+
+        .features section.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .features section:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .features section:hover::before {
+            left: 0;
+        }
+
+        .features section:nth-child(even):hover {
+            transform: translateY(-15px) scale(1.02) rotateY(2deg);
+        }
+
+        .features section:nth-child(odd):hover {
+            transform: translateY(-15px) scale(1.02) rotateY(-2deg);
+        }
+
+        .icon.major {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .features section:hover .icon.major {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--secondary-blue);
+        }
+
+        /* Articles */
+        article {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        article.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-accent);
+            transition: height 0.6s ease 0.2s;
+        }
+
+        article.visible::before {
+            height: 100%;
+        }
+
+        article:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .wrapper.style2 article,
+        .wrapper.style3 article {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper.style2 article:hover,
+        .wrapper.style3 article:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Lists */
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .intro-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle i {
+                font-size: 1rem;
+            }
+            
+            .icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                padding: 1.5rem 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .intro-image img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body class="is-preload">
+
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <!-- Sidebar -->
     <section id="sidebar">
@@ -49,7 +787,7 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#honors">Honors</a></li>
                     <li><a href="#leadership">Leadership</a></li>
-                    <li><a href="https://brian-bazurto-resume.vercel.app/">Resume</a></li>
+                    <li><a href="https://brian-bazurto-resume.vercel.app/" target="_blank">Resume</a></li>
                 </ul>
             </nav>
         </div>
@@ -60,390 +798,421 @@
 
         <!-- Introduction -->
         <section id="intro" class="wrapper style1 fullscreen fade-up">
-          <div class="inner intro-container">
-              <!-- Text Section -->
-              <div class="intro-text">
-                  <h1>Brian Bazurto</h1>
-                     <p>
-            I'm a passionate computer science student who thrives at the intersection of technology, learning, and community-building. 
-            As the <strong>President & Founder of Code Crunch Club</strong>, I aim to empower fellow students to excel in technical 
-            interview preparation and software development by fostering an inclusive, collaborative environment. Explore more about my
-            journey through coding, leadership, and community service. 
-        </p>
-        <p>
-            Check out the Code Crunch Club <a href="https://ba-00001.github.io/codecrunchclub" target="_blank"><strong>here</strong></a> to learn how we're making 
-            an impact!
-        </p>
-        
-                  <!-- Social Media Information -->
-                  <div>
-                      <ul class="icons">
-                          <li><a href="https://linkedin.com/in/IBA001" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                          <li><a href="https://github.com/ba-00001" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                      </ul>
-                  </div>
-                  <!-- Additional introductory content or links -->
-                  <ul class="actions">
-                      <li><a href="#education" class="button scrolly">Learn more</a></li>
-                  </ul>
-              </div>
+            <div class="inner intro-container">
+                <!-- Text Section -->
+                <div class="intro-text">
+                    <h1>Brian Bazurto</h1>
+                    <p>
+                        I'm a passionate computer science student who thrives at the intersection of technology, learning, and community-building. 
+                        As the <strong>President & Founder of Code Crunch Club</strong>, along with leading <strong>ColorStack at FIU</strong>, <strong>CAHSI at FIU</strong>, and <strong>Google Developer Group at FIU</strong>, I empower fellow students to excel in technical 
+                        interview preparation and software development by fostering inclusive, collaborative environments. Explore more about my
+                        journey through coding, leadership, and community service.
+                    </p>
+                    <p>
+                        Check out our platforms: 
+                        <a href="https://codecrunchglobal.vercel.app/" target="_blank"><strong>Code Crunch Global</strong></a>, 
+                        <a href="https://colorstackatfiu.vercel.app/" target="_blank"><strong>ColorStack at FIU</strong></a>, 
+                        <a href="https://cahsiatfiu.vercel.app/" target="_blank"><strong>CAHSI at FIU</strong></a>, and 
+                        <strong>Google Developer Group at FIU</strong> to learn how we're making 
+                        an impact across multiple communities!
+                    </p>
 
-              <!-- Image Section -->
-              <div class="intro-image">
-                  <img src="images/website-pic.jpg" alt="Brian Bazurto">
-              </div>
-          </div>
-      </section>
+                    <!-- Resume Link Display -->
+                    <div class="resume-link-display">
+                        <h3><i class="fas fa-file-alt"></i> View My PDF Resume</h3>
+                        <a href="https://brian-bazurto-resume.vercel.app/" target="_blank" class="resume-url">
+                            brian-bazurto-resume.vercel.app
+                        </a>
+                    </div>
+                    
+                    <!-- Social Media Information -->
+                    <div>
+                        <ul class="icons">
+                            <li><a href="https://linkedin.com/in/IBA001" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/ba-00001" target="_blank"><i class="fab fa-github"></i></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Additional introductory content or links -->
+                    <ul class="actions">
+                        <li><a href="#education" class="button scrolly">Learn more</a></li>
+                    </ul>
+                </div>
+
+                <!-- Image Section -->
+                <div class="intro-image">
+                    <img src="https://github.com/user-attachments/assets/495ec3eb-e30e-483a-9804-c13d076a2545" alt="Brian Bazurto">
+                </div>
+            </div>
+        </section>
 
         <!-- Education -->
         <section id="education" class="wrapper style2 spotlights">
             <div class="inner">
                 <h2>Education</h2>
-                <p><strong>Florida International University</strong><br>
-                Bachelor of Arts in Computer Science, Honors College, Minors: Actuarial Studies, GPA: 3.67, Expected May 2026</p>
+                <article>
+                    <h3>Florida International University</h3>
+                    <p><strong>Expected December 2026</strong><br>
+                    Bachelor of Arts in Computer Science, Minor in Business Analytics, Honors College<br>
+                    GPA: 3.75/4.0</p>
+                </article>
                 
-                <h2>Google - Tech Exchange 2024 Cohort</h2>
-                <p><strong>Jan 2024 - May 2024</strong><br>
-                • Completed accredited coursework and received direct mentorship from Googlers.<br>
-                • Curriculum: Applied Data Structures & Algorithms, Software Development, Careers in Tech.</p>
+                <article>
+                    <h3>Google - Tech Exchange 2024 Cohort</h3>
+                    <p><strong>January 2024 - May 2024</strong><br>
+                    • Completed accredited coursework and received direct mentorship from Googlers.<br>
+                    • Curriculum: Applied Data Structures & Algorithms, Software Development, Careers in Tech.</p>
+                </article>
                 
-                <p><strong>Community College of Philadelphia</strong><br>
-                Associate in Science in Computer Science, GPA: 3.87, Transfer student Dec 2022</p>
-                <p><strong>Relevant Coursework</strong><br>
-                    Data Structures and Algorithms, Calculus I, and Calculus II.</p>
+                <p><strong>Relevant Coursework:</strong> Data Structures and Algorithms, Calculus I, and Calculus II.</p>
             </div>
         </section>
-
 
         <!-- Skills -->
         <section id="skills" class="wrapper style3 fade-up">
             <div class="inner">
-                <h2>Skills &amp; Technologies</h2>
-                <p><strong>Languages:</strong> Java, Python, C++, SQL, JavaScript, Kotlin, Next.js</p>
-                <p><strong>Tools:</strong> Android Studio, PyCharm, Visual Studio, IntelliJ, Git, Google Cloud</p>
-                <p><strong>Certifications:</strong> CodePath: Android Development 101 & 102, Cybersecurity 101 & 102, Software Engineering, Technical Interview 
-                    Prep 103, IOS Development 101, and Web Development 101.</p>
+                <h2>Technical Skills</h2>
+                <article>
+                    <p><strong>Languages:</strong> SQL, Java, Python, C, C++, JavaScript, Kotlin</p>
+<p><strong>Web Technologies:</strong> Next.js, Flask, Firebase, Clerk, Pinecone, SQLite, SQLAlchemy, Vercel</p>
+                    <p><strong>Developer Tools:</strong> PyCharm, Android Studio, Visual Studio, IntelliJ, Git, Kubernetes, NumPy, Bruno, Postman, PostgreSQL, XpressO, Jenkins, JIRA, LaTeX, Agile, Data Visualization, Confluence</p>
+                </article>
             </div>
         </section>
 
         <!-- Experience -->
-        <section id="experience" class="wrapper style1 fade-up">
+        <section id="experience" class="wrapper style2 fade-up">
             <div class="inner">
                 <h2>Professional Experience</h2>
 
-                <h3>Club President – Aug 2024 – Present</h3>
-                <p>CodeCrunch, Miami, FL</p>
-                <ul>
-                    <li><strong>Founded Code Crunch Club:</strong> Led the club's efforts in organizing technical interview preparation sessions and coding workshops 
-                        aimed at enhancing members' problem-solving skills.</li>
-                    <li><strong>Industry Collaboration:</strong> Collaborated with industry leaders to host panel discussions, connecting students with career 
-                        opportunities at top tech companies like Google, Salesforce, ServiceNow, Goldman Sachs, and Workday.</li>
-                </ul>
-                
-                <h3>Fellowship – Jul 2024 – Aug 2024</h3>
-                <p>HeadStarter AI, New York, NY</p>
-                <ul>
-                    <li><strong>AI Customer Support Chatbot:</strong> Developed a chatbot using Next.js, Firebase for authentication, and GPT-4o mini model for 
-                        real-time NLP-based interactions, automating customer support queries with Material-UI for seamless UI/UX.</li>
-                    <li><strong>AI Rate My Professors:</strong> Built a professor rating platform using Next.js and Python, optimizing user sentiment analysis 
-                        algorithms for accurate professor ratings based on feedback.</li>
-                </ul>
-
-
-
-                
-                <h3>SEO Tech Dev Intern – May 2024 – Aug 2024</h3>
-                <p>SEO Tech Developer, New York, NY</p>
-                <ul>
-                    <li><strong>EcoRoute:</strong> A sustainable routing app using Python, ChatGPT API, and Google Maps API, offering eco-friendly travel 
-                      options and CO2 emission estimates.</li>
-                    <li><strong>HealthWatch: </strong>A personal health monitoring app built with Flask, integrating ChatGPT API and Fitbit API for real-time 
-                      tracking and data analysis.</li>
-                    <li><strong>StockSnap: </strong>A stock portfolio management app developed with Flask, utilizing ChatGPT API and News API for real
-                      time market data and performance insights.</li>
-                  </ul>
-
-                <h3>Tech Fellow - Technical Interview Prep (TIP 101) - June 2024 - Present</h3>
-                <p>CodePath, San Francisco, CA</p>
-                <ul>
-                    <li>Assisted students with lab problems and technical challenges, functioning similarly to a Teaching Assistant.</li>
-                    <li>Supported students in understanding and resolving coding exercises and interview preparation issues.</li>
-                    <li>Provided guidance on effective problem-solving strategies and coding practices.</li>
-                    <li>Contributed to the development of instructional materials and resources to aid student learning.</li>
-                    <li>Promoted a collaborative learning environment by encouraging peer support and knowledge sharing.</li>
-                </ul>
-
                 <article>
-                    <h3>Google - Tech Exchange 2024 Cohort</h3>
-                    <p>January 2024 - May 2024</p>
+                    <h3>Workday</h3>
+                    <p><strong>Software Development Engineer Intern | May 2025 - August 2025 | Atlanta, GA</strong></p>
                     <ul>
-                        <li>Participated in an immersive tech exchange program, receiving direct mentorship from experienced Googlers.</li>
-                        <li>Completed rigorous coursework in Applied Data Structures & Algorithms, enhancing my software development skills.</li>
-                        <li>Explored various careers in technology through targeted training and real-world application scenarios.</li>
-                        <li>Engaged in collaborative projects that simulated real-time tech industry challenges.</li>
-                        <li>Was part of a team that developed <strong>BodySync</strong>, a web app deployed on Google Cloud using Python, Streamlit, Gemini API, and Gemini Provision. Our project was selected to be presented in the program finale as one of the best apps, showcasing our innovative approach and technical proficiency.</li>
+                        <li><strong>Backend Feature Development:</strong> Designed and developed a comprehensive backend feature to improve report display functionality across the Workday Extend platform, significantly enhancing usability and user experience for all Extend applications through optimized data processing and visualization capabilities.</li>
+                        <li><strong>Agile Methodology Implementation:</strong> Used advanced Agile methodology to implement complex metadata graph handling, robust schema validation processes, efficient serialization systems, and strategic feature toggling for controlled rollouts, ensuring systematic development and deployment practices.</li>
+                        <li><strong>CI/CD Pipeline Integration:</strong> Integrated sophisticated continuous integration pipelines for automated testing protocols and streamlined deployment processes, ensuring high-quality code delivery, faster development cycles, and improved operational efficiency across development teams.</li>
+                        <li><strong>Production Impact and Optimization:</strong> Anticipated to significantly improve user experience metrics and operational efficiency if deployed to production environment, demonstrating measurable business value and technical excellence in enterprise software development.</li>
                     </ul>
                 </article>
 
                 <article>
-                    <h3>AI4ALL Ignite - Career Readiness & Technical AI Internship</h3>
-                    <p>January 2024 - October 2024</p>
+                    <h3>Google Developer Group at FIU</h3>
+                    <p><strong>President | July 2025 - Present | Miami, FL</strong></p>
                     <ul>
-                        <li>Built an AI agent for Pong using Python, employing reinforcement learning with policy gradient algorithms. Optimized the
-                            agent's performance through hyperparameter tuning, model training, and reward-based learning techniques.</li>
-                        <li>Used machine learning techniques and OpenAI Gym to enhance decision-making and simulate real-time performance.</li>
-                        
+                        <li><strong>Chapter Development and Community Building:</strong> Built a comprehensive chapter by organizing developer workshops, technical hackathons, and industry tech talks that promoted innovation, community engagement, and professional development among students and technology professionals in the Miami area.</li>
+                        <li><strong>Google Cloud Platform Training:</strong> Delivered hands-on training in Google Cloud Platform (GCP) technologies, deploying AI agents with Vertex AI API and integrating large language models (e.g., PaLM 2, Gemini) for real-time applications such as intelligent chatbots and automated content generation systems.</li>
+                        <li><strong>Technical Skill Enhancement:</strong> Enhanced members' practical skills in cloud-based AI solutions, machine learning implementation, and modern software development practices through structured workshops, mentorship programs, and collaborative projects.</li>
                     </ul>
                 </article>
 
-                <h3>Tech Fellow - WEB 101 - Sep 2023- May 2024</h3>
-                <p>CodePath, San Francisco, CA</p>
-                <ul>
-                    <li>Shared technical skills and knowledge in web development, empowering fellow students.</li>
-                    <li>Provided consistent assistance and support during class sessions.</li>
-                    <li>Facilitated discussions, answered questions, and guided students through coding challenges and projects.</li>
-                    <li>Offered one-on-one support to struggling students, helping them overcome obstacles and grasp complex concepts.</li>
-                    <li>Cultivated a supportive community within the class, fostering collaboration and mutual learning among participants.</li>
-                </ul>
+                <article>
+                    <h3>Code Crunch, ColorStack at FIU & CAHSI at FIU</h3>
+                    <p><strong>Club President & Founder | August 2024 - Present | Miami, FL</strong></p>
+                    <ul>
+                        <li><strong>Multi-Organization Leadership:</strong> Founded and scaled three student organizations by recruiting 600+ members across 15+ universities, coordinating 16 Tech Leads and a 20-member executive board to host large-scale tech events, technical workshops, and career development programs.</li>
+                        <li><strong>Technical Interview Preparation:</strong> Led comprehensive technical interview preparation sessions, coding bootcamps, and algorithm challenges to enhance students' problem-solving skills, coding proficiency, and career readiness for technology roles.</li>
+                        <li><strong>Industry Partnership and Networking:</strong> Established partnerships with major technology companies including Google, Salesforce, ServiceNow, Goldman Sachs, and Workday to provide students with mentorship opportunities, internship pathways, and direct access to industry professionals.</li>
+                    </ul>
+                </article>
 
-                <h3>Intern at American Express - May 2023</h3>
-                <p>American Express, Miami, FL</p>
-                <ul>
-                    <li>Collaborated with the Amex security team to gain insights into advanced security processes for large-scale organizations.</li>
-                    <li>Contributed to a project focused on web and mobile application security.</li>
-                    <li>Participated in meetings, discussions, and hands-on exercises to deepen understanding of security protocols and procedures.</li>
-                    <li>Applied theoretical knowledge from coursework to real-world security challenges, enhancing cybersecurity practices and frameworks.</li>
-                </ul>
+                <article>
+                    <h3>Floreo Labs</h3>
+                    <p><strong>Software Development Engineer Contractor | March 2025 - Present | Atlanta, GA</strong></p>
+                    <ul>
+                        <li><strong>Android Application Development:</strong> Built advanced Android applications using Kotlin programming language and Jetpack Compose framework with clean architecture principles, improving development speed, code maintainability, and user experience through modular, scalable code structures.</li>
+                        <li><strong>Clean Architecture Implementation:</strong> Implemented clean architecture patterns including MVVM, dependency injection, and modular design principles to create maintainable, testable, and scalable mobile applications with improved code quality and development efficiency.</li>
+                        <li><strong>User Experience Optimization:</strong> Enhanced user experience through responsive UI design, smooth animations, and intuitive user interactions, resulting in improved user engagement metrics and positive feedback from end users and stakeholders.</li>
+                    </ul>
+                </article>
 
-                <h3>Data Administrator at Housing Department - Oct 2020 – Dec 2023</h3>
-                <p>Esperanza, Inc, Philadelphia, PA</p>
+                <article>
+                    <h3>CAHSI LREU</h3>
+                    <p><strong>Researcher | February 2025 - Present | Chicago, IL</strong></p>
+                    <ul>
+                        <li><strong>Cache Replacement Strategy Research:</strong> Conducted comprehensive experiments on cache replacement strategies for gray-box fuzzing using controlled environments and systematic testing methodologies, yielding valuable insights that improved vulnerability discovery efficiency and security testing effectiveness.</li>
+                        <li><strong>Cybersecurity Research and Analysis:</strong> Developed innovative approaches to software vulnerability detection, contributing to academic research in computer security and advancing understanding of fuzzing techniques for software testing and security analysis.</li>
+                        <li><strong>Conference Participation and Knowledge Sharing:</strong> Shared research findings as a 2025 GMiS (Grace Hopper Celebration) participant, collaborated with academic researchers, and contributed to the broader cybersecurity research community through technical presentations and knowledge dissemination.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>HeadStarter AI</h3>
+                    <p><strong>Fellowship | July 2024 - August 2024 | New York, NY</strong></p>
+                    <ul>
+                        <li><strong>AI Customer Support Chatbot Development:</strong> Developed a comprehensive chatbot using Next.js for frontend framework, Firebase for secure user authentication, and GPT-4o mini model for real-time NLP-based interactions, successfully automating customer support queries with Material-UI for seamless user interface and experience design.</li>
+                        <li><strong>AI Rate My Professors Platform:</strong> Built a sophisticated professor rating platform using Next.js for web development and Python for backend processing, optimizing advanced user sentiment analysis algorithms for accurate professor ratings and feedback analysis based on student reviews and evaluations.</li>
+                        <li><strong>Real-time AI Integration and User Experience:</strong> Implemented cutting-edge AI technologies for natural language processing, user interaction optimization, and data-driven insights to enhance educational technology solutions and improve student decision-making processes through intelligent automation.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>AI4ALL Ignite</h3>
+                    <p><strong>Career Readiness & Technical AI Internship | January 2024 - October 2024</strong></p>
+                    <ul>
+                        <li><strong>AI Agent Development for Gaming:</strong> Built an advanced AI agent for Pong using Python programming language, employing sophisticated reinforcement learning techniques with policy gradient algorithms to create intelligent gameplay behavior and autonomous decision-making capabilities for real-time gaming scenarios.</li>
+                        <li><strong>Performance Optimization and Model Training:</strong> Optimized the agent's performance through systematic hyperparameter tuning, comprehensive model training processes, and reward-based learning techniques to achieve superior gameplay results and consistent performance improvements across multiple gaming sessions.</li>
+                        <li><strong>Machine Learning Implementation and Decision Enhancement:</strong> Used advanced machine learning techniques and OpenAI Gym framework to enhance decision-making algorithms, simulate real-time performance scenarios, and develop robust AI systems capable of adaptive learning and strategic gameplay optimization.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>SEO Tech Developer</h3>
+                    <p><strong>Software Engineer Intern | May 2024 - August 2024 | New York, NY</strong></p>
+                    <ul>
+                        <li><strong>Multi-Application Development:</strong> Created EcoRoute (sustainable routing application), HealthWatch (personal health monitoring platform), and StockSnap (stock portfolio management system) using Python, Flask framework, and various APIs by integrating ChatGPT for intelligent processing and data analysis.</li>
+                        <li><strong>AI Integration and Intelligent Processing:</strong> Implemented ChatGPT API integration for intelligent data processing, natural language understanding, and automated insights generation, delivering comprehensive solutions for sustainability tracking, health monitoring, and financial analysis.</li>
+                        <li><strong>Full-Stack Development and API Integration:</strong> Developed full-stack applications with robust backend services, intuitive frontend interfaces, and seamless API integrations to provide users with real-time data, personalized recommendations, and actionable insights across multiple domains.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>CodePath</h3>
+                    <p><strong>Teaching Assistant / Tech Fellow - Web & iOS Development, Technical Interview Prep | September 2023 - Present | San Francisco, CA</strong></p>
+                    <ul>
+                        <li><strong>Student Mentorship and Technical Guidance:</strong> Guided students in web development, iOS app development, and technical interview preparation through hands-on labs, coding projects, and one-on-one mentoring sessions, improving their problem-solving skills and coding efficiency.</li>
+                        <li><strong>Curriculum Development and Workshop Leadership:</strong> Developed technical curriculum materials, led coding workshops, and facilitated collaborative learning sessions to enhance students' understanding of software development principles, best practices, and industry standards.</li>
+                        <li><strong>Career Preparation and Skill Development:</strong> Provided comprehensive career preparation support including resume reviews, mock interviews, technical assessments, and industry insights to help students transition successfully into technology careers and internship opportunities.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>American Express</h3>
+                    <p><strong>Software Engineer Intern (1-month Spring Internship) | May 2023 | Miami, FL</strong></p>
+                    <ul>
+                        <li><strong>Security Protocol Implementation:</strong> Enhanced web and mobile application security by implementing new Java/Spring-based protocols, improving protection against vulnerabilities and security threats for Amex products and services.</li>
+                        <li><strong>Cybersecurity Best Practices:</strong> Collaborated with the Amex security team to gain insights into advanced security processes for large-scale organizations, contributing to projects focused on web and mobile application security frameworks.</li>
+                        <li><strong>Enterprise Security Frameworks:</strong> Applied theoretical knowledge from coursework to real-world security challenges, enhancing cybersecurity practices and frameworks within enterprise-level financial technology systems.</li>
+                    </ul>
+                </article>
+
+                <article>
+
+                <h3>Sponsors for Educational Opportunity (SEO)</h3>
+                <p><strong>Apprenticeship First Year Academy | April 2023 - July 2023 | New York, NY</strong></p>
                 <ul>
-                    <li>Oversaw and maintained databases for 10 national housing agencies, generating custom data reports.</li>
-                    <li>Ensured data accuracy and provided technology support across various platforms including Windows, MS Office, Adobe, and cloud applications.</li>
-                    <li>Streamlined data management processes, leading to more efficient reporting and decision-making.</li>
-                    <li>Empowered staff with technical skills and knowledge, enhancing their productivity and confidence in utilizing technology for data-related tasks.</li>
+                    <li><strong>Python Development Experience:</strong> Gained hands-on experience in Python programming including data manipulation techniques, algorithm design principles, and comprehensive software testing methodologies, building foundation for advanced software development roles.</li>
+                    <li><strong>Technical Skill Development:</strong> Enhanced programming proficiency through practical projects and real-world application scenarios, developing problem-solving abilities and software engineering best practices for technology career preparation.</li>
+                    <li><strong>Professional Readiness Training:</strong> Developed professional communication skills, project management capabilities, and industry best practices preparation for technology careers while building confidence in technical abilities and professional presentation.</li>
                 </ul>
+            </article>
             </div>
         </section>
 
-       <!-- Projects -->
-<section id="projects" class="wrapper style2 spotlights">
-    <div class="inner">
-        <h2>Projects</h2>
-        <p>Here are some of the key projects I've worked on, organized by date, demonstrating my skills and expertise in various domains.</p>
-        <div class="features">
-            <!-- Project 1 -->
-            <section>
-                <span class="icon solid major fa-comments"></span>
-                <h3>AI Customer Support Web App (August 2024)</h3>
-                <p>Developed as an AI-powered chatbot for HeadStarter AI, this application assists users with interview preparation through interactive chat. Users can send messages and receive real-time responses from an AI model, and the chat interface dynamically updates as messages are sent and received.</p>
-                <p><strong>Tech Stack:</strong> Next.js, Material-UI, Firebase Authentication, GPT-4o Mini</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-AI-Customer-Support-Web-App.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 2 -->
-            <section>
-                <span class="icon solid major fa-book"></span>
-                <h3>FlashGenius (August 2024)</h3>
-                <p>FlashGenius is designed to help users create, manage, and study flashcards. Users can generate AI-powered flashcards, securely log in using Clerk, and subscribe to a Pro plan for additional features like unlimited flashcards and storage.</p>
-                <p><strong>Tech Stack:</strong> Next.js, Clerk, Firebase, OpenAI, Stripe</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-AI.FLASHCARDS-FLASH.GENIUS.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 3 -->
-            <section>
-                <span class="icon solid major fa-chart-line"></span>
-                <h3>StockSnap (August 2024)</h3>
-                <p>StockSnap is an app for managing and tracking stock portfolios, providing real-time market data and insights. Users can add and track multiple stock portfolios, set alerts for stock price changes, and view performance analysis.</p>
-                <p><strong>Tech Stack:</strong> Vantage API, ChatGPT API, Python, Flask, Bootstrap</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-StockSnap-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 4 -->
-            <section>
-                <span class="icon solid major fa-heartbeat"></span>
-                <h3>HealthWatch Web App (August 2024)</h3>
-                <p>A personal health monitoring app for individuals with chronic conditions, health enthusiasts, and seniors. The app integrates with the Fitbit API and provides real-time health tracking, a personal dashboard, and historical data analysis.</p>
-                <p><strong>Tech Stack:</strong> Fitbit API, Flask, Streamlit, PythonAnywhere</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-HealthWatch-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 5 -->
-            <section>
-                <span class="icon solid major fa-archive"></span>
-                <h3>Pantry Tracker Web App (August 2024)</h3>
-                <p>Developed as a pantry inventory management application, Pantry Tracker provides a simple and efficient way to manage pantry items. Users can add new items to their pantry inventory, remove or decrease the quantity of existing items, and search functionality allows users to quickly find items by name.</p>
-                <p><strong>Tech Stack:</strong> Next.js, Material-UI, Firebase Firestore</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/Pantry-Tracker-Web-App.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 6 -->
-            <section>
-                <span class="icon solid major fa-brain"></span>
-                <h3>AI Rate My Professor Web App (August 2024)</h3>
-                <p>Developed as an AI-powered web application, "AI Rate My Professor" provides students with detailed insights and evaluations of their professors. The platform uses advanced AI techniques to analyze and summarize student feedback, offering a comprehensive overview of each professor's teaching style, effectiveness, and overall performance.</p>
-                <p><strong>Tech Stack:</strong> React, Next.js, Material-UI, Pinecone, Clerk, OpenAI</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-AI-Rate-My-Professor.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 7 -->
-            <section>
-                <span class="icon solid major fa-map-signs"></span>
-                <h3>EcoRoute Web App (July 2024)</h3>
-                <p>A sustainable routing app that offers eco-friendly travel options and CO2 emission estimates. It was built with Python and integrates with the Google Maps API to provide users with the most sustainable routes available.</p>
-                <p><strong>Tech Stack:</strong> Python, ChatGPT API, Google Maps API</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-EcoRoute.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 8 -->
-            <section>
-                <span class="icon solid major fa-brain"></span>
-                <h3>MentalMate Android App (April 2024)</h3>
-                <p>An AI-driven mental health companion app designed to improve mental wellness. Users can interact with an AI chatbot for mental health support, log their mood, and track their mental health over time.</p>
-                <p><strong>Tech Stack:</strong> Android Studio, Kotlin, ChatGPT API, RecyclerView</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/MENTALMATE-FILES/MENTALMATE-README.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 9 -->
-            <section>
-                <span class="icon solid major fa-music"></span>
-                <h3>TuneTrek Music iOS App (April 2024)</h3>
-                <p>A music streaming app allowing users to browse and play music albums. Users can view a list of albums with cover art, play music from selected albums, and the app supports both iPhone and iPad layouts.</p>
-                <p><strong>Tech Stack:</strong> Xcode, Swift, UIKit</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TUNE.TREK-IOS.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 10 -->
-            <section>
-                <span class="icon solid major fa-heart"></span>
-                <h3>BitFit Android App (March 2024)</h3>
-                <p>A fitness tracking app that allows users to log and monitor their fitness activities and nutrition. Users can view a summary of their activities over time and track their progress.</p>
-                <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-BITFIT-ANDROID.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 11 -->
-            <section>
-                <span class="icon solid major fa-rss"></span>
-                <h3>Tumblr Feed iOS App (March 2024)</h3>
-                <p>An app that allows users to view and interact with their Tumblr feed. Users can view posts, like them, and filter posts by type.</p>
-                <p><strong>Tech Stack:</strong> Xcode, Swift</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TUMBLR.IOS.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 12 -->
-            <section>
-                <span class="icon solid major fa-film"></span>
-                <h3>Flixster+ Android App (March 2024)</h3>
-                <p>A movie browsing app that enables users to explore movies currently playing in theaters. Users can request a list of current movies, view movie poster images, and browse through them.</p>
-                <p><strong>Tech Stack:</strong> Android Studio, Kotlin, The Movie Database API, Glide</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-FLIXSTER.V2.ANDROID.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 13 -->
-            <section>
-                <span class="icon solid major fa-tasks"></span>
-                <h3>Task Manager IOS App (February 2024)</h3>
-                <p>A task management app that helps users organize and manage their tasks efficiently with a simple and intuitive interface.</p>
-                <p><strong>Tech Stack:</strong> Xcode, Swift</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TASK.IOS.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 14 -->
-            <section>
-                <span class="icon solid major fa-keyboard"></span>
-                <h3>Wordle iOS App (February 2024)</h3>
-                <p>An iOS version of the popular word puzzle game where users try to guess a hidden word within 6 attempts. Features a daily challenge with a new word each day.</p>
-                <p><strong>Tech Stack:</strong> Xcode, Swift</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WORDLE.IOS.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 15 -->
-            <section>
-                <span class="icon solid major fa-list"></span>
-                <h3>Wishlist Android App (February 2024)</h3>
-                <p>A convenient tool for users to keep track of items they want to buy. Users can add items to their wishlist with details like name, price, and URL, and manage their wishlist efficiently.</p>
-                <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView, Room (for persistent storage)</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WHISHLIST-ANDROID.APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 16 -->
-            <section>
-                <span class="icon solid major fa-question-circle"></span>
-                <h3>Trivia Quiz iOS App (February 2024)</h3>
-                <p>A quiz game where users can answer questions across different categories. Displays multiple-choice questions with immediate feedback on answers and tracks user scores.</p>
-                <p><strong>Tech Stack:</strong> Xcode, Swift</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TRIVIA-QUIZ-IOS-APP-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 17 -->
-            <section>
-                <span class="icon solid major fa-keyboard"></span>
-                <h3>Wordle Android App (February 2024)</h3>
-                <p>A clone of the popular word puzzle game where users try to guess a hidden word within 6 attempts. Features a daily challenge with a new word each day.</p>
-                <p><strong>Tech Stack:</strong> Android Studio, Kotlin</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WORDLE-ANDROID.APP-FILES..MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 18 -->
-            <section>
-                <span class="icon solid major fa-gamepad"></span>
-                <h3>PingPong Agent (January 2024 - May 2024)</h3>
-                <p>PingPong Agent is an AI-based game agent designed to play ping pong with human players. The agent learns from each game and improves its gameplay over time, providing real-time AI gameplay.</p>
-                <p><strong>Tech Stack:</strong> Python, Gym Library</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/PingPongAgent-FILES/PingPongAgent-FILES-README.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 19 -->
-            <section>
-                <span class="icon solid major fa-heart"></span>
-                <h3>ActiveAmigo (January 2024 - April 2024)</h3>
-                <p>ActiveAmigo is a fitness app developed as part of a project management course. The app provides workout plans, tracks progress, and offers social features for users to connect with workout buddies.</p>
-                <p><strong>Tech Stack:</strong> React, Node.js, Express</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-ACTIVE.AMIGO-PM-PROJECT-FILES.MD" class="button primary">View Demo</a></p>
-            </section>
-            <!-- Project 20 -->
-            <section>
-                <span class="icon solid major fa-mobile-alt"></span>
-                <h3>BodySync Web App (January 2024 - April 2024)</h3>
-                <p>A web fitness application that leverages AI to provide personalized fitness and nutrition guidance. The user can log fitness activities and nutrition intake, and the app provides personalized workout and diet plans. Integration with fitness tracking devices for real-time data synchronization.</p>
-                <p><strong>Tech Stack:</strong> Streamlit, Flask, Google Cloud, Gemini Pro API</p>
-                <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/BodySyncWebApp-FILES/BodySyncWebApp-README.MD" class="button primary">View Demo</a></p>
-            </section>
-        </div>
-    </div>
-</section>
+        <!-- Projects -->
+        <section id="projects" class="wrapper style2 spotlights">
+            <div class="inner">
+                <h2>Projects</h2>
+                <p>Here are some of the key projects I've worked on, organized by date, demonstrating my skills and expertise in various domains including community platforms, AI applications, mobile development, and web technologies.</p>
+                
+                <div class="features">
+                    <!-- Multi-Platform Leadership -->
+                    <section>
+                        <span class="icon solid major fa-users"></span>
+                        <h3>Multi-Platform Community Leadership (2024-2025)</h3>
+                        <p><strong>Comprehensive Community Development:</strong> Developed and deployed multiple comprehensive platforms including codecrunchglobal.vercel.app, colorstackatfiu.vercel.app, and cahsiatfiu.vercel.app to support technical interview preparation, community building, and educational resource sharing for students across 15+ universities worldwide, implementing scalable architecture for high-traffic events.</p>
+                        <p><strong>Multi-Organization Web Presence and Platform Integration:</strong> Created dedicated platforms for Code Crunch Club, ColorStack at FIU, CAHSI at FIU, and Google Developer Group at FIU, featuring event management systems, member portals, and resource libraries to facilitate community engagement and professional development through modern web technologies and cross-platform integration.</p>
+                        <p><strong>Tech Stack:</strong> Next.js, React, Vercel, Firebase, Tailwind CSS</p>
+                        <p>
+                            <a href="https://codecrunchglobal.vercel.app/" class="button primary" target="_blank" style="margin: 0.25rem;">Code Crunch Global</a>
+                            <a href="https://colorstackatfiu.vercel.app/" class="button primary" target="_blank" style="margin: 0.25rem;">ColorStack FIU</a>
+                            <a href="https://cahsiatfiu.vercel.app/" class="button primary" target="_blank" style="margin: 0.25rem;">CAHSI FIU</a>
+                        </p>
+                    </section>
 
+                    <!-- AI Customer Support Web App -->
+                    <section>
+                        <span class="icon solid major fa-comments"></span>
+                        <h3>AI Customer Support Web App (August 2024)</h3>
+                        <p><strong>AI-Powered Chatbot Development:</strong> Developed a comprehensive AI-powered chatbot for HeadStarter AI that assists users with interview preparation through interactive chat functionality, implementing real-time natural language processing for intelligent conversation management and automated customer support query resolution.</p>
+                        <p><strong>Real-Time Communication System:</strong> Built a dynamic chat interface that updates instantaneously as messages are sent and received, utilizing GPT-4o Mini model for contextual responses and Firebase Authentication for secure user management and session persistence across multiple devices.</p>
+                        <p><strong>Tech Stack:</strong> Next.js, Material-UI, Firebase Authentication, GPT-4o Mini</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-AI-Customer-Support-Web-App.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- FlashGenius -->
+                    <section>
+                        <span class="icon solid major fa-book"></span>
+                        <h3>FlashGenius (August 2024)</h3>
+                        <p><strong>AI-Powered Educational Platform:</strong> Designed and developed FlashGenius to help users create, manage, and study flashcards using artificial intelligence, implementing automated flashcard generation algorithms and personalized learning pathways for enhanced educational outcomes and improved study efficiency.</p>
+                        <p><strong>Secure Authentication and Premium Features:</strong> Integrated Clerk for robust user authentication and authorization, developed subscription management system using Stripe for Pro plan features including unlimited flashcards, cloud storage, and advanced study analytics with seamless payment processing.</p>
+                        <p><strong>Tech Stack:</strong> Next.js, Clerk, Firebase, OpenAI, Stripe</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-AI.FLASHCARDS-FLASH.GENIUS.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- StockSnap -->
+                    <section>
+                        <span class="icon solid major fa-chart-line"></span>
+                        <h3>StockSnap (August 2024)</h3>
+                        <p><strong>Financial Portfolio Management System:</strong> Developed StockSnap as a comprehensive application for managing and tracking stock portfolios, implementing real-time market data integration and advanced analytics for investment decision-making and portfolio optimization with intelligent insights and performance monitoring.</p>
+                        <p><strong>Real-Time Data Processing and Alerts:</strong> Integrated Vantage API for live market data feeds, implemented automated alert systems for stock price changes, and created comprehensive performance analysis tools with historical data visualization and trend analysis using ChatGPT API for market insights.</p>
+                        <p><strong>Tech Stack:</strong> Vantage API, ChatGPT API, Python, Flask, Bootstrap</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-StockSnap-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- HealthWatch Web App -->
+                    <section>
+                        <span class="icon solid major fa-heartbeat"></span>
+                        <h3>HealthWatch Web App (August 2024)</h3>
+                        <p><strong>Personal Health Monitoring Platform:</strong> Created a comprehensive personal health monitoring application targeting individuals with chronic conditions, health enthusiasts, and seniors, integrating advanced health tracking capabilities with real-time data analysis and personalized health insights for improved wellness management.</p>
+                        <p><strong>Fitbit API Integration and Real-Time Tracking:</strong> Implemented seamless integration with Fitbit API for automated health data collection, developed real-time health tracking systems for vital signs monitoring, and created comprehensive personal dashboards for health metrics visualization using Streamlit and Flask frameworks.</p>
+                        <p><strong>Tech Stack:</strong> Fitbit API, Flask, Streamlit, PythonAnywhere</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-HealthWatch-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Continue with remaining projects... -->
+                    
+                    <!-- TuneTrek Music iOS App -->
+                    <section>
+                        <span class="icon solid major fa-music"></span>
+                        <h3>TuneTrek Music iOS App (April 2024)</h3>
+                        <p><strong>Music Streaming Application Development:</strong> Developed a comprehensive music streaming application allowing users to browse and play music albums with intuitive navigation, implementing album discovery features with cover art display and seamless music playback functionality for enhanced user experience across iPhone and iPad devices.</p>
+                        <p><strong>Cross-Platform UI Design and Music Playback Integration:</strong> Created responsive user interfaces supporting both iPhone and iPad layouts with optimized touch interactions, integrated music playback controls and album management systems, and implemented efficient data handling for music metadata and streaming capabilities using UIKit framework.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift, UIKit</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TUNE.TREK-IOS.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- BitFit Android App -->
+                    <section>
+                        <span class="icon solid major fa-heart"></span>
+                        <h3>BitFit Android App (March 2024)</h3>
+                        <p><strong>Fitness Tracking and Activity Monitoring:</strong> Developed a comprehensive fitness tracking application that allows users to log and monitor their fitness activities and nutrition intake with detailed activity summaries, implementing data persistence and progress tracking features for long-term health management and wellness monitoring.</p>
+                        <p><strong>Progress Analytics and User Interface Design:</strong> Created intuitive user interfaces using RecyclerView for efficient data display of fitness activities, implemented comprehensive progress tracking systems with visual analytics and summary reports, and developed user-friendly input forms for activity logging and nutrition tracking with Android Studio and Kotlin.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-BITFIT-ANDROID.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Tumblr Feed iOS App -->
+                    <section>
+                        <span class="icon solid major fa-rss"></span>
+                        <h3>Tumblr Feed iOS App (March 2024)</h3>
+                        <p><strong>Social Media Feed Integration and User Interaction:</strong> Developed an application that allows users to view and interact with their Tumblr feed through seamless API integration, implementing post viewing capabilities, like functionality, and content filtering systems to enhance social media engagement and user experience.</p>
+                        <p><strong>Content Filtering and Interactive Features:</strong> Created advanced content filtering systems allowing users to filter posts by type and category, implemented interactive features for liking and engaging with posts, and developed efficient data loading and caching mechanisms for smooth social media browsing using Swift and iOS frameworks.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TUMBLR.IOS.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Flixster+ Android App -->
+                    <section>
+                        <span class="icon solid major fa-film"></span>
+                        <h3>Flixster+ Android App (March 2024)</h3>
+                        <p><strong>Movie Discovery and Entertainment Platform:</strong> Developed a comprehensive movie browsing application that enables users to explore movies currently playing in theaters with real-time data integration, implementing movie discovery features with poster image display and detailed movie information for enhanced entertainment experience.</p>
+                        <p><strong>API Integration and Image Loading Optimization:</strong> Integrated The Movie Database API for real-time movie data retrieval and updates, implemented efficient image loading and caching using Glide library for optimal performance, and created intuitive browsing interfaces with smooth navigation and responsive design using Android Studio and Kotlin.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, The Movie Database API, Glide</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-FLIXSTER.V2.ANDROID.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Task Manager iOS App -->
+                    <section>
+                        <span class="icon solid major fa-tasks"></span>
+                        <h3>Task Manager iOS App (February 2024)</h3>
+                        <p><strong>Productivity and Task Organization System:</strong> Developed a comprehensive task management application that helps users organize and manage their tasks efficiently with intuitive interfaces, implementing task creation, editing, and completion tracking features with priority management and deadline notifications for enhanced productivity.</p>
+                        <p><strong>User Interface Design and Task Management Features:</strong> Created simple and intuitive user interfaces optimized for task management workflows, implemented efficient task categorization and priority systems, and developed data persistence mechanisms for reliable task storage and retrieval using Swift and iOS development frameworks.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TASK.IOS.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Wordle iOS App -->
+                    <section>
+                        <span class="icon solid major fa-keyboard"></span>
+                        <h3>Wordle iOS App (February 2024)</h3>
+                        <p><strong>Word Puzzle Game Development and Logic Implementation:</strong> Developed an iOS version of the popular word puzzle game where users try to guess a hidden word within 6 attempts, implementing game logic with word validation, hint systems, and scoring mechanisms for engaging gameplay experience with daily challenges.</p>
+                        <p><strong>Daily Challenge System and Game Mechanics:</strong> Created daily challenge features with new words each day and persistent game state management, implemented interactive game mechanics with visual feedback for correct and incorrect letter placements, and developed user-friendly interfaces with smooth animations using Swift and iOS frameworks.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WORDLE.IOS.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Wishlist Android App -->
+                    <section>
+                        <span class="icon solid major fa-list"></span>
+                        <h3>Wishlist Android App (February 2024)</h3>
+                        <p><strong>Shopping and Wishlist Management System:</strong> Developed a convenient tool for users to keep track of items they want to buy with comprehensive item management features, implementing wishlist creation, editing, and organization capabilities with detailed item information including name, price, URL, and category management for efficient shopping planning.</p>
+                        <p><strong>Data Persistence and User Interface Optimization:</strong> Implemented Room database for persistent storage ensuring data reliability and offline access, created efficient user interfaces using RecyclerView for smooth item browsing and management, and developed intuitive item addition and editing workflows using Android Studio and Kotlin for optimal user experience.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin, RecyclerView, Room (for persistent storage)</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WHISHLIST-ANDROID.APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Trivia Quiz iOS App -->
+                    <section>
+                        <span class="icon solid major fa-question-circle"></span>
+                        <h3>Trivia Quiz iOS App (February 2024)</h3>
+                        <p><strong>Educational Gaming and Knowledge Assessment Platform:</strong> Developed a comprehensive quiz game where users can answer questions across different categories with immediate feedback systems, implementing multiple-choice question displays, scoring mechanisms, and category-based question organization for engaging educational entertainment and knowledge testing.</p>
+                        <p><strong>Score Tracking and Interactive Feedback Systems:</strong> Created user score tracking systems with performance analytics and progress monitoring, implemented immediate feedback mechanisms for correct and incorrect answers with explanatory content, and developed intuitive quiz navigation with category selection and difficulty progression using Swift and iOS development tools.</p>
+                        <p><strong>Tech Stack:</strong> Xcode, Swift</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-TRIVIA-QUIZ-IOS-APP-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- Wordle Android App -->
+                    <section>
+                        <span class="icon solid major fa-keyboard"></span>
+                        <h3>Wordle Android App (February 2024)</h3>
+                        <p><strong>Cross-Platform Game Development and Android Implementation:</strong> Developed a clone of the popular word puzzle game where users try to guess a hidden word within 6 attempts, implementing game logic with word validation, visual feedback systems, and daily challenge features for consistent user engagement and entertainment.</p>
+                        <p><strong>Game Logic and User Experience Optimization:</strong> Created comprehensive game mechanics with letter placement feedback, color-coded hint systems, and word validation algorithms, implemented daily challenge features with new words and game state persistence, and developed responsive user interfaces optimized for Android devices using Kotlin and Android Studio.</p>
+                        <p><strong>Tech Stack:</strong> Android Studio, Kotlin</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-WORDLE-ANDROID.APP-FILES..MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- PingPong Agent -->
+                    <section>
+                        <span class="icon solid major fa-gamepad"></span>
+                        <h3>PingPong Agent (January 2024 - May 2024)</h3>
+                        <p><strong>AI Game Agent Development and Machine Learning Implementation:</strong> Developed PingPong Agent as an AI-based game agent designed to play ping pong with human players through advanced machine learning algorithms, implementing reinforcement learning techniques with adaptive gameplay strategies and real-time decision-making capabilities for competitive gaming scenarios.</p>
+                        <p><strong>Adaptive Learning and Performance Optimization:</strong> Created machine learning systems that learn from each game and improve gameplay over time through experience accumulation, implemented real-time AI gameplay with dynamic strategy adjustment and performance monitoring, and developed intelligent agent behaviors using Python and Gym Library for sophisticated gaming AI.</p>
+                        <p><strong>Tech Stack:</strong> Python, Gym Library</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/PingPongAgent-FILES/PingPongAgent-FILES-README.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+
+                    <!-- ActiveAmigo -->
+                    <section>
+                        <span class="icon solid major fa-heart"></span>
+                        <h3>ActiveAmigo (January 2024 - April 2024)</h3>
+                        <p><strong>Fitness Application and Project Management Integration:</strong> Developed ActiveAmigo as a comprehensive fitness app as part of a project management course, implementing workout plan creation, progress tracking systems, and social networking features for users to connect with workout buddies and fitness communities for enhanced motivation and accountability.</p>
+                        <p><strong>Social Features and Community Building:</strong> Created social networking capabilities allowing users to connect with workout partners, share fitness achievements, and participate in fitness challenges, implemented comprehensive workout planning tools with customizable routines and progress analytics using React, Node.js, and Express for full-stack fitness solution development.</p>
+                        <p><strong>Tech Stack:</strong> React, Node.js, Express</p>
+                        <p><a href="https://github.com/ba-00001/DEMOS-PROJECTS/blob/main/resources/README-ACTIVE.AMIGO-PM-PROJECT-FILES.MD" class="button primary" target="_blank">View Demo</a></p>
+                    </section>
+                </div>
+
+
+             <div style="text-align: center; margin-top: 3rem;">
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem;">View complete portfolio and detailed project documentation:</p>
+                    <a href="https://codecrunchglobal.vercel.app/" class="button" target="_blank" style="margin-right: 1rem;">Code Crunch Global</a>
+                    <a href="https://colorstackatfiu.vercel.app/" class="button" target="_blank" style="margin-right: 1rem;">ColorStack FIU</a>
+                    <a href="https://cahsiatfiu.vercel.app/" class="button" target="_blank">CAHSI FIU</a>
+                    <a href="https://hackuniversity.vercel.app/" class="button" target="_blank" style="margin-right: 1rem;">7 Hacks: Code Crunch GLOBAL x ColorStack @ FIU x CAHSI @ FIU x GDG at FIU</a>
+                </div>
+            </div>
+        </section>
 
         <!-- Honors and Awards -->
         <section id="honors" class="wrapper style3 fade-up">
             <div class="inner">
-                <h2>Honors and Awards</h2>
-                <ul>
-                    <li><strong>Dean’s List:</strong> Spring 2024, Fall 2023, Spring 2023</li>
-                    <li><strong>Hispanic Scholarship Fund:</strong> July 2023</li>
-                    <li><strong>TAU SIGMA National Honor Society:</strong> June 2023</li>
-                    <li><strong>First Presbyterian Church in Philadelphia (LGBTQ) Scholarship:</strong> October 2022</li>
-                    <li><strong>Phi Theta Kappa Honor Society International:</strong> July 2022</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Leadership and Professional Development -->
-        <section id="leadership" class="wrapper style1 fade-up">
-            <div class="inner">
-                <h2>Leadership and Professional Development</h2>
-                <p>Here, you will find a detailed overview of the initiatives I have led or been a significant part of, showcasing my commitment to growth and excellence in both technical and leadership capacities.</p>
-
+                <h2>Honors, Awards & Professional Development</h2>
                 <article>
-                    <h3>Management Leadership for Tomorrow (MLT) - Career Preparation Fellow</h3>
-                    <p>January 2024 - September 2025</p>
+                    <h3>Academic Honors</h3>
                     <ul>
-                        <li>Engaged in the SWE track of MLT's Career Prep program, focusing on accelerating my career in software engineering.</li>
-                        <li>Participated in intensive professional development sessions and mentorship to hone leadership skills and industry knowledge.</li>
+                        <li><strong>Dean's List (2023–2025):</strong> Achieved academic excellence with consistent high performance across multiple semesters at Florida International University, demonstrating exceptional commitment to academic success and scholarly achievement.</li>
+                        <li><strong>Honors Dean's List (2023–2025):</strong> Recognized for outstanding academic achievement in the Honors College program, maintaining superior grades while participating in enriched academic experiences and research opportunities.</li>
+                        <li><strong>Hispanic Scholarship Fund (2023, 2025):</strong> Awarded merit-based scholarship supporting Latino students in STEM fields pursuing higher education, recognizing academic excellence and commitment to community leadership and professional development.</li>
+                        <li><strong>Tau Sigma National Honor Society:</strong> Inducted for academic excellence and leadership potential as a transfer student, demonstrating exceptional academic performance and commitment to continued educational excellence.</li>
+                        <li><strong>Phi Theta Kappa Honor Society International:</strong> Recognized for academic achievement and leadership in community college education, maintaining high academic standards and contributing to campus community through service and leadership.</li>
+                        <li><strong>First Presbyterian Church (LGBTQ) Scholarship:</strong> Received scholarship recognizing academic merit and commitment to diversity and inclusion, supporting educational advancement while promoting equality and community service.</li>
                     </ul>
                 </article>
-
+                
                 <article>
-                    <h3>Sponsors for Educational Opportunity (SEO) - Apprenticeship First Year Academy</h3>
-                    <p>April 2023 - July 2023</p>
+                    <h3>Professional Development</h3>
                     <ul>
-                        <li>Gained hands-on experience in Python development, including data manipulation, algorithm design, and software testing. </li>
-                    </ul>
-                </article>
-
-                <article>
-                    <h3>Florida International University – Student Organizations</h3>
-                    <p>January 2023 - Present</p>
-                    <ul>
-                        <li>Active participant in technical workshops as an INIT Member, BookTok Club, and FIU Brazilian Jiu-Jitsu.</li>
-                        <li>Contributed to the technical community by participating in MLH hackathons (Web3Apps, TechTogether, Global HackWeek), Breakthrough Tech Miami, and supporting organizations like ALPFA FIU and SHPE FIU.</li>
+                        <li><strong>Management Leadership for Tomorrow (MLT) - Career Prep Fellow:</strong> Participated in intensive leadership development program focused on advancing underrepresented professionals in technology careers, developing leadership skills and industry knowledge through structured mentorship and professional development.</li>
+                        <li><strong>Professional Organizations:</strong> Active member in NSBE (National Society of Black Engineers), WICS (Women in Computer Science), SWE (Society of Women Engineers), providing networking opportunities and professional development while contributing to diversity and inclusion in technology fields.</li>
+                        <li><strong>Campus Involvement:</strong> Engaged in BookTok Club (literary community building), FIU Brazilian Jiu-Jitsu (athletic development and discipline), ALPFA (Association of Latino Professionals For America), and SHPE (Society of Hispanic Professional Engineers) for comprehensive professional and personal development.</li>
+                        <li><strong>Hackathon Experience:</strong> Participated in MLH hackathons including Web3Apps (blockchain development), TechTogether (diversity-focused tech event), Global HackWeek (international coding competition), and Break Through Tech Miami (tech career advancement program) to enhance technical skills and collaborative problem-solving abilities.</li>
                     </ul>
                 </article>
             </div>
         </section>
+
+
 
         <!-- Footer -->
         <footer id="footer" class="wrapper style1-alt">
@@ -456,13 +1225,121 @@
 
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        // Toggle sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close sidebar after clicking link
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+
+        // Enhanced intersection observer with staggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered delay for multiple elements
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate child elements with delay
+                        const children = entry.target.querySelectorAll('h2, h3, article, .features section');
+                        children.forEach((child, childIndex) => {
+                            setTimeout(() => {
+                                child.classList.add('animated', 'visible');
+                            }, childIndex * 100);
+                        });
+                    }, index * 50);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-up, article, .features section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate headers on scroll
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('h2, h3').forEach(header => {
+            headerObserver.observe(header);
+        });
+
+        // Parallax effect for intro image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const introImage = document.querySelector('.intro-image img');
+            if (introImage) {
+                introImage.style.transform = `translateY(${scrolled * 0.3}px) scale(${1 + scrolled * 0.0002})`;
+            }
+        });
+
+        // Add loading animation to project cards
+        function animateProjectCards() {
+            const projectCards = document.querySelectorAll('.features section');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            animateProjectCards();
+            
+            // Add typing effect to main title
+            const title = document.querySelector('h1');
+            if (title) {
+                const text = title.textContent;
+                title.textContent = '';
+                title.style.opacity = 1;
+                
+                text.split('').forEach((char, index) => {
+                    setTimeout(() => {
+                        title.textContent += char;
+                    }, index * 100);
+                });
+            }
+        });
+    </script>
 </body>
-</html>
+</html>   
+              
