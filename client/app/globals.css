@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* Class-based dark mode driven by next-themes (adds .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Signature highlighter yellow */
+  --color-hl: #e5ff00;
+  --color-hl-soft: #f2ff66;
+  --color-hl-deep: #c8e000;
+
+  /* Pastel / pride accents for light gradients */
+  --color-pastel-pink: #ffb3d9;
+  --color-pastel-peach: #ffd6a5;
+  --color-pastel-lemon: #fdffb6;
+  --color-pastel-mint: #caffbf;
+  --color-pastel-sky: #a0c4ff;
+  --color-pastel-lilac: #bdb2ff;
+  --color-pastel-rose: #ffc6ff;
+
+  /* Fonts (wired up in layout via next/font CSS variables) */
+  --font-display: var(--font-display-var), system-ui, sans-serif;
+  --font-sans: var(--font-body-var), system-ui, sans-serif;
+
+  /* Motion */
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- Theme surface tokens ---- */
+:root {
+  --background: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f2;
+  --foreground: #14141a;
+  --muted: #5b5b66;
+  --border: rgba(20, 20, 26, 0.1);
+  --ring: rgba(20, 20, 26, 0.14);
+  --hl-on-surface: #2a2e00;
+  --hero-glow: rgba(229, 255, 0, 0.55);
+}
+
+.dark {
+  --background: #07070b;
+  --surface: #101018;
+  --surface-2: #16161f;
+  --foreground: #f4f4f6;
+  --muted: #a0a0ad;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: rgba(255, 255, 255, 0.16);
+  --hl-on-surface: #c4b5fd;
+  --hero-glow: rgba(167, 139, 250, 0.32);
+
+  /* Dark mode swaps the highlighter yellow for purple */
+  --color-hl: #a78bfa;
+  --color-hl-soft: #c4b5fd;
+  --color-hl-deep: #8b5cf6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Selection in highlighter yellow */
+::selection {
+  background: var(--color-hl);
+  color: #14141a;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--foreground) 22%, transparent);
+  border-radius: 999px;
+  border: 3px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--foreground) 34%, transparent);
+}
+
+/* Marker / highlighter underline effect */
+.marker {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    var(--color-hl) 0%,
+    var(--color-hl-soft) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 38%;
+  background-position: 0 88%;
+  padding: 0 0.1em;
+  color: var(--foreground);
+}
+.dark .marker {
+  color: #14141a;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  border-radius: 0.2em;
+}
+
+/* Animated pride/pastel gradient text */
+.pride-text {
+  background: linear-gradient(
+    100deg,
+    #ff5d8f,
+    #ff8c42,
+    #ffd23f,
+    #06d6a0,
+    #4cc9f0,
+    #b15dff,
+    #ff5d8f
+  );
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pride-pan 9s linear infinite;
+}
+
+@keyframes pride-pan {
+  to {
+    background-position: 280% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Kept as a no-op so section markup stays clean (no background tint) */
+.pastel-wash {
+  background-image: none;
+}
+
+/* Glassy card */
+.card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s var(--ease-pop), box-shadow 0.4s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--color-hl) 70%, var(--border));
+}
+
+/* Highlighter chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  background: var(--surface-2);
+  transition: all 0.25s ease;
+}
+.chip:hover {
+  color: var(--hl-on-surface);
+  border-color: var(--color-hl);
+  background: color-mix(in srgb, var(--color-hl) 18%, var(--surface));
+}
+
+/* Reveal helper for GSAP — start hidden to avoid flash, JS adds class to animate */
+.reveal {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .pride-text {
+    animation: none;
+  }
+}
