@@ -1,0 +1,42 @@
+name: Mirror to deploy repo
+
+# Server-side safety net for the local husky pre-push hook. It keeps Pablo's
+# Vercel-connected repo (Valx01P/brian-bazurto-portfolio) in sync even when the
+# local hook never runs — e.g. editing on github.com, or pushing before ever
+# running `npm install`. When the husky hook DID run, this just force-pushes the
+# same commit again (idempotent — no harm).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# A push that lands while the previous mirror is still running supersedes it.
+concurrency:
+  group: mirror-deploy
+  cancel-in-progress: true
+
+jobs:
+  mirror:
+    # Only ever run in Brian's source repo — never inside the deploy repo, so
+    # the mirrored copy of this workflow can't loop back on itself.
+    if: github.repository == 'ba-00001/resume'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Force-push HEAD onto the deploy repo's main
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          if [ -z "${MIRROR_TOKEN}" ]; then
+            echo "::notice::MIRROR_TOKEN secret is not set — skipping the deploy mirror."
+            echo "Add it under Settings → Secrets and variables → Actions to enable."
+            exit 0
+          fi
+          git push --force \
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/Valx01P/brian-bazurto-portfolio.git" \
+            HEAD:refs/heads/main
+          echo "✓ Mirrored $(git rev-parse --short HEAD) → Valx01P/brian-bazurto-portfolio (main)"
