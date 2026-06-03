@@ -12,7 +12,7 @@ export const profile = {
   image: "/brian.jpg",
   resumeUrl: "https://brian-bazurto-resume.vercel.app/",
   resumeFile: "/Brian_Bazurto_Resume.pdf",
-  email: "pvald027@fiu.edu",
+  email: "BA.00001@outlook.com",
   location: "Miami, FL",
   socials: {
     linkedin: "https://linkedin.com/in/IBA001",
