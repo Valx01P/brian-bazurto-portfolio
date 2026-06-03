@@ -12,11 +12,18 @@
 # branch. "Force" is intentional: the deployment repo is a throwaway mirror, so
 # we overwrite it outright and never deal with merge conflicts.
 #
+# BEST-EFFORT, NEVER BLOCKS. This is only the fast path — it makes the live site
+# update within seconds when it can. The real guarantee is the GitHub Action in
+# .github/workflows/mirror.yml, which mirrors the same push server-side. So if
+# this local push can't reach the deploy repo (no access, offline, …) we just
+# print a heads-up and exit 0 — the push to origin always succeeds and the
+# Action still publishes the change.
+#
 # It is invoked the same way git invokes pre-push:
 #     mirror-push.sh <remote-name> <remote-url>      (ref updates arrive on stdin)
 #
-# Escape hatch: `MIRROR_SKIP=1 git push` pushes to origin only and skips the
-# mirror. Use it only when you knowingly want the live site to lag behind.
+# Escape hatch: `MIRROR_SKIP=1 git push` skips this fast path (the Action still
+# deploys, just a touch slower).
 
 set -eu
 
@@ -45,7 +52,7 @@ esac
 # 2. Explicit opt-out.
 # ----------------------------------------------------------------------------
 if [ "${MIRROR_SKIP:-}" = "1" ]; then
-	echo "↪︎  MIRROR_SKIP=1 — pushing to origin only, deployment mirror skipped." >&2
+	echo "↪︎  MIRROR_SKIP=1 — skipping local mirror (the GitHub Action still deploys)." >&2
 	exit 0
 fi
 
@@ -94,11 +101,12 @@ if git push --force "$MIRROR_REMOTE" "$DEPLOY_SHA:refs/heads/$MIRROR_BRANCH" 2>"
 fi
 
 # ----------------------------------------------------------------------------
-# 6. The mirror push failed. Figure out whether it's a permissions problem
-#    (Brian hasn't accepted Pablo's invite yet) and react accordingly.
+# 6. The instant mirror failed — but that's OK. This hook is only a fast path;
+#    the GitHub Action (.github/workflows/mirror.yml) mirrors the same push
+#    server-side and is the real guarantee. So we NEVER block the push: we just
+#    print a soft heads-up and let it through (exit 0).
 # ----------------------------------------------------------------------------
 ERR="$(cat "$ERRLOG")"
-echo "$ERR" >&2
 
 PERMISSION_ISSUE=0
 case "$ERR" in
@@ -107,52 +115,15 @@ case "$ERR" in
 		PERMISSION_ISSUE=1 ;;
 esac
 
-echo "" >&2
-echo "──────────────────────────────────────────────────────────────────────" >&2
-echo "✗  Could not update the deployment repo:" >&2
-echo "     $MIRROR_URL" >&2
-echo "" >&2
+echo "ℹ  Couldn't instant-mirror to the deployment repo — no problem, the" >&2
+echo "   GitHub Action will publish this push in ~a minute. Continuing." >&2
 if [ "$PERMISSION_ISSUE" = "1" ]; then
-	echo "   This looks like a PERMISSIONS problem — your GitHub account can't" >&2
-	echo "   write to Pablo's deployment repo yet. Most likely you haven't" >&2
-	echo "   accepted the collaborator invite." >&2
-	echo "" >&2
-	echo "   Fix it:" >&2
-	echo "     1. Check your email (and https://github.com/notifications) for" >&2
-	echo "        Pablo's invite to Valx01P/brian-bazurto-portfolio and accept it." >&2
-	echo "     2. Or ping Pablo <pablovaldes0925@gmail.com> to re-send it." >&2
-	echo "     3. Make sure git is signed in as the right GitHub account." >&2
+	echo "   (Reason: your account can't write to the deploy repo directly. The" >&2
+	echo "    site still updates via the Action. Want the faster local path too?" >&2
+	echo "    Accept Pablo's invite to Valx01P/brian-bazurto-portfolio — check" >&2
+	echo "    your email / https://github.com/notifications, or ask Pablo.)" >&2
 else
-	echo "   This looks like a network/git error rather than permissions." >&2
-	echo "   Check your connection and try the push again." >&2
+	echo "   (Reason below — likely a transient network/git error.)" >&2
+	echo "$ERR" | sed 's/^/    /' >&2
 fi
-echo "──────────────────────────────────────────────────────────────────────" >&2
-echo "" >&2
-
-# ----------------------------------------------------------------------------
-# 7. Decide whether to let the push to origin proceed.
-#    - Interactive human (a real terminal): ask.
-#    - GUI / coding agent / CI (no tty): fail loudly so the missing sync is
-#      never silent. Override with `MIRROR_SKIP=1 git push` once understood.
-# ----------------------------------------------------------------------------
-# Note: on macOS `/dev/tty` passes the -e/-r/-w file tests even when there is
-# no controlling terminal, so we must actually try to open it to tell a real
-# human apart from a GUI / coding agent / CI run.
-if (exec 3<>/dev/tty) 2>/dev/null; then
-	printf "Push to your origin repo anyway, without updating the live site? [y/N] " >/dev/tty
-	read -r answer </dev/tty || answer=""
-	case "$answer" in
-		[Yy] | [Yy][Ee][Ss])
-			echo "↪︎  Proceeding with origin push only. The live site will NOT update yet." >&2
-			exit 0 ;;
-		*)
-			echo "✗  Push aborted. Nothing was pushed. Fix access above and retry." >&2
-			exit 1 ;;
-	esac
-else
-	echo "   (Non-interactive shell — GUI, coding agent, or CI.)" >&2
-	echo "   The push is BLOCKED so the live site never silently falls behind." >&2
-	echo "   If you understand the live site won't update and want to push to" >&2
-	echo "   origin anyway, re-run with:  MIRROR_SKIP=1 git push" >&2
-	exit 1
-fi
+exit 0

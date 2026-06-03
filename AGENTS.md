@@ -11,21 +11,22 @@ Two repos are in play:
 - **deployment mirror** → `github.com/Valx01P/brian-bazurto-portfolio` — Pablo's repo,
   wired to Vercel, which hosts the live site.
 
-A `pre-push` git hook (husky, installed by `npm install` in `client/`) automatically
-force-pushes every push onto the mirror's `main` so the live site stays in sync. The
-logic is in `client/scripts/mirror-push.sh`.
+Two things keep the mirror in sync:
+
+1. **A GitHub Action** (`.github/workflows/mirror.yml`) mirrors every push to `main`
+   server-side. **This is the guarantee** — it runs regardless of local setup.
+2. **A local husky `pre-push` hook** (`client/scripts/mirror-push.sh`) is a best-effort
+   fast path that mirrors instantly when it can. It **never blocks**: if it can't reach
+   the mirror it prints a note and the push proceeds.
 
 What this means for you:
 
-- **Just run `git push` normally.** The hook handles the mirror. Do **not** add, script,
-  or `git push` to the mirror remote yourself, and do **not** disable hooks with
-  `--no-verify`.
-- If the hook **blocks the push** with a permissions error, the human (Brian) needs to
-  accept Pablo's GitHub collaborator invite to `Valx01P/brian-bazurto-portfolio`. **Stop
-  and tell the user** — do not work around it. Surface the message; suggest they check
-  their email / GitHub notifications, or contact Pablo (`pablovaldes0925@gmail.com`).
-- Only if the user **explicitly** wants to push to origin without updating the live site,
-  use `MIRROR_SKIP=1 git push`. Never set `MIRROR_SKIP` on your own initiative.
+- **Just run `git push` normally.** Both mechanisms handle the mirror. Do **not** add,
+  script, or `git push` to the mirror remote yourself, and do **not** use `--no-verify`.
+- If the hook prints **"Couldn't instant-mirror…"**, that's expected and harmless — the
+  Action still deploys. Do **not** treat it as an error or try to work around it.
+- `MIRROR_SKIP=1 git push` skips only the local fast path (the Action still deploys).
+  Don't set it on your own initiative.
 
 ## Don't commit these
 

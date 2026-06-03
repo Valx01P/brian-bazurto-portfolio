@@ -66,24 +66,19 @@ There are **two GitHub repos**:
 | [`ba-00001/resume`](https://github.com/ba-00001/resume) | **Yours (Brian).** Where you work and push — the `origin` remote. |
 | [`Valx01P/brian-bazurto-portfolio`](https://github.com/Valx01P/brian-bazurto-portfolio) | **Pablo's.** Hooked up to **Vercel**, which hosts the live site. |
 
-You only ever touch your own repo. A git hook (installed automatically by `npm install`) does the rest: **every `git push` also force-pushes your latest commit to Pablo's repo's `main` branch**, and Vercel redeploys the live site. The two repos always match.
+You only ever touch your own repo. Whatever you push to `main` lands on Pablo's repo's `main` and Vercel redeploys. Two things keep them in sync, so you don't have to think about it:
 
-This works the same whether you push from the terminal, from the VS Code / Cursor git buttons, or via a coding agent — the hook runs in all of them.
+1. **A GitHub Action** (`.github/workflows/mirror.yml`) — runs on GitHub after every push to `main` and mirrors it to the deploy repo. **This is the guarantee.** It works no matter how you push: terminal, VS Code / Cursor buttons, a coding agent, even editing files directly on github.com.
+2. **A local git hook** (husky, auto-installed) — a *fast path* that mirrors instantly at push time so the site updates in seconds instead of ~a minute. It's best-effort: if it can't (you're offline, or don't have direct access to the deploy repo), it just prints a note and the push continues — the Action still publishes it.
 
-### If a push says it can't update the live site
+So in practice: **commit, `git push`, done.** The site updates either way.
 
-You'll see a message if the hook can't write to Pablo's deployment repo. Almost always it means you haven't **accepted Pablo's collaborator invite** yet:
+### If you see "Couldn't instant-mirror…"
 
-1. Check your **email** and https://github.com/notifications for an invite to `Valx01P/brian-bazurto-portfolio` and accept it.
-2. Or message **Pablo** (`pablovaldes0925@gmail.com`) to re-send it.
-3. Make sure git/GitHub is signed in as the GitHub account Pablo invited.
+That's just the fast local path opting out — **it's harmless, the Action still deploys your push.** You don't have to do anything.
 
-In a normal terminal it will **ask** whether to push to your own repo anyway (the live site just won't update until access is fixed). In the VS Code/Cursor UI or via a coding agent it **blocks the push** instead, so the live site never silently falls out of sync.
+If you *want* the instant path too (optional), you need direct write access to the deploy repo: accept Pablo's collaborator invite to `Valx01P/brian-bazurto-portfolio` (check your **email** / https://github.com/notifications), or ask **Pablo** (`pablovaldes0925@gmail.com`). Without it, everything still works — just via the Action.
 
-**Escape hatch:** to push to your own repo *without* updating the live site (rarely needed), run:
+**Escape hatch:** `MIRROR_SKIP=1 git push` skips the local fast path entirely (the Action still deploys).
 
-```bash
-MIRROR_SKIP=1 git push
-```
-
-> Details of the hook live in `scripts/mirror-push.sh`. The hook is wired up by `.husky/pre-push` and reinstalled automatically whenever you run `npm install`.
+> The hook lives in `.husky/pre-push` → `scripts/mirror-push.sh`, and reinstalls automatically on `npm install` / `npm run dev`. The Action needs a one-time `MIRROR_TOKEN` secret in this repo's settings (Pablo set this up).
