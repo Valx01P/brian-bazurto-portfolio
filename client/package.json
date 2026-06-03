@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "hooks": "cd .. && husky client/.husky || true",
+    "prepare": "npm run hooks",
+    "predev": "npm run hooks",
+    "prebuild": "npm run hooks",
+    "prestart": "npm run hooks"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -21,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "husky": "^9.1.7",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

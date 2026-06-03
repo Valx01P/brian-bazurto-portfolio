@@ -1,0 +1,8 @@
+# Auto-installed git hook (husky). Runs on every `git push` — from the CLI,
+# from VS Code / Cursor's git UI, and from coding agents alike.
+#
+# It mirrors the push onto Pablo's Vercel-connected repo so the live site stays
+# in sync. See client/scripts/mirror-push.sh for the full logic and the
+# MIRROR_SKIP=1 escape hatch. Hooks run from the git root, so the path below is
+# relative to the repository root, not to client/.
+sh client/scripts/mirror-push.sh "$@"
